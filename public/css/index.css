@@ -93,3 +93,12 @@ p {
   font-size: 20px;
   color: #17083b;
 }
+
+.foot {
+  padding-top: 92vh;
+  text-align: center;
+}
+
+#footer {
+  font-weight: 400;
+}
