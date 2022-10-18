@@ -1,8 +1,6 @@
 const btn = document.getElementById("submitBtn");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
-
-const logs = {};
 const form = document.querySelector(".loginForm");
 
 /**
@@ -31,7 +29,7 @@ const loginFunc = (form, fieldsMap) => {
   return logs;
 };
 
-//validates username and password input
+//validates username and password input and stores session in localStorage
 if (form) {
   const fieldsMap = new Map();
   fieldsMap.set("email", "");
