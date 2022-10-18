@@ -1,4 +1,5 @@
 let navbar = document.querySelector("nav");
+const button = document.querySelector("#login");
 
 window.onscroll = function () {
   // pageYOffset or scrollY
@@ -8,3 +9,7 @@ window.onscroll = function () {
     navbar.classList.remove("scrolled");
   }
 };
+
+button.addEventListener("click", () => {
+  location.href = "/sign-in";
+});

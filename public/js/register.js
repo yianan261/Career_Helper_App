@@ -9,7 +9,7 @@ pass.addEventListener("input", (evt) => {
   password = "";
   password += evt.target.value;
   if (evt.target.value === "") {
-    alert("Please input a valid password");
+    alert("Please enter a valid password");
   }
   console.dir(evt);
   console.log(evt);
