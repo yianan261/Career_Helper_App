@@ -4,9 +4,8 @@ const bodyParser = require("body-parser");
 const tasks = require("./routes/tasks");
 const register = require("./routes/register");
 const errorController = require("./controllers/error");
-const authController = require("./controllers/auth");
-
-const { MongoClient } = require("mongodb");
+const mongoConnect = require("./config/db");
+// const { MongoClient } = require("mongodb");
 const path = require("path");
 
 dotenv.config({ path: "./config/config.env" });
@@ -38,6 +37,14 @@ app.get("/profile", (req, res, next) => {
   res.status(200).sendFile(path.join(__dirname, "views", "profile.html"));
 });
 
+app.get("/tracker", (req, res, next) => {
+  res.status(200).sendFile(path.join(__dirname, "views", "tracker.html"));
+});
+
+app.get("/jobs", (req, res, next) => {
+  res.status(200).sendFile(path.join(__dirname, "views", "jobs.html"));
+});
+
 //redirects to index.html
 app.get("/home", (req, res) => {
   res.status(200).redirect("/");
@@ -51,15 +58,19 @@ app.listen(
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 );
 
-//connecting mongoDB
-const client = new MongoClient(process.env.MONGO_URI);
-const run = async () => {
-  try {
-    await client.connect();
-    console.log("connected success");
-  } finally {
-    await client.close();
-  }
-};
+mongoConnect(() => {
+  console.log("client");
+});
 
-run().catch(console.dir);
+// //connecting mongoDB
+// const client = new MongoClient(process.env.MONGO_URI);
+// const run = async () => {
+//   try {
+//     await client.connect();
+//     console.log("connected success");
+//   } finally {
+//     await client.close();
+//   }
+// };
+
+// run().catch(console.dir);
