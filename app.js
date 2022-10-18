@@ -31,10 +31,12 @@ app.get("/sign-in", (req, res, send) => {
   res.status(200).sendFile(path.join(__dirname, "views", "sign-in.html"));
 });
 
+//redirects to index.html
 app.get("/home", (req, res) => {
   res.status(200).redirect("/");
 });
 
+//if not found
 app.use((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
 });
