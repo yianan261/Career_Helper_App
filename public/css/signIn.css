@@ -276,3 +276,9 @@ a.ssolink {
     transform: translateX(0px);
   }
 }
+
+.icon {
+  left: 15px;
+  color: #bfbfbf;
+  transition: color 0.2s ease;
+}
