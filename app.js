@@ -3,6 +3,9 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const tasks = require("./routes/tasks");
 const register = require("./routes/register");
+const errorController = require("./controllers/error");
+const authController = require("./controllers/auth");
+
 const { MongoClient } = require("mongodb");
 const path = require("path");
 
@@ -19,19 +22,19 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/tasks", tasks);
 app.use("/register", register);
 
-app.get("/", (req, res, send) => {
+app.get("/", (req, res, next) => {
   res.status(200).sendFile(path.join(__dirname, "views", "index.html"));
 });
 
-app.get("/register", (req, res, send) => {
+app.get("/register", (req, res, next) => {
   res.status(200).sendFile(path.join(__dirname, "views", "register.html"));
 });
 
-app.get("/sign-in", (req, res, send) => {
+app.get("/sign-in", (req, res, next) => {
   res.status(200).sendFile(path.join(__dirname, "views", "sign-in.html"));
 });
 
-app.get("/profile", (req, res, send) => {
+app.get("/profile", (req, res, next) => {
   res.status(200).sendFile(path.join(__dirname, "views", "profile.html"));
 });
 
@@ -40,10 +43,8 @@ app.get("/home", (req, res) => {
   res.status(200).redirect("/");
 });
 
-//if not found
-app.use((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
-});
+// //if not found
+app.use(errorController.get404);
 
 app.listen(
   PORT,

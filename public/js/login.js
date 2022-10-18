@@ -5,8 +5,8 @@ const form = document.querySelector(".loginForm");
 
 /**
  *
- * @param {*} form
- * @param {*} fieldsMap
+ * @param {event form} form
+ * @param {Map} fieldsMap - key,value pair of user login(email) and passwords
  * @returns logs object that contains username and password
  */
 const loginFunc = (form, fieldsMap) => {
