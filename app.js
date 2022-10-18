@@ -31,6 +31,10 @@ app.get("/sign-in", (req, res, send) => {
   res.status(200).sendFile(path.join(__dirname, "views", "sign-in.html"));
 });
 
+app.get("/profile", (req, res, send) => {
+  res.status(200).sendFile(path.join(__dirname, "views", "profile.html"));
+});
+
 //redirects to index.html
 app.get("/home", (req, res) => {
   res.status(200).redirect("/");

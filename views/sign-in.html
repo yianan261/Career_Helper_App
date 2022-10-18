@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign-Up</title>
+    <title>Sign-In</title>
     <!-- meta description -->
     <meta name="description"
         content="Sign-in page for the Career Helper App that helps engineers land their dream engineering jobs">
@@ -42,7 +42,7 @@
                         <a href="home" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="profile.html" class="nav-link">My Profile</a>
+                        <a href="profile" class="nav-link">My Profile</a>
                     </li>
                     <li class="nav-item">
                         <a href="tracker.html" class="nav-link">My Tracker</a>
@@ -111,7 +111,7 @@
                                 <form id="stripe-login">
                                     <div class="field padding-bottom--24">
                                         <label for="name">Email</label>
-                                        <input type="email" name="email">
+                                        <input type="email" id="email" name="email">
                                     </div>
                                     <div class="field padding-bottom--24">
                                         <div class="grid--50-50">
@@ -120,16 +120,16 @@
                                                 <a href="#">Forgot your password?</a>
                                             </div>
                                         </div>
-                                        <input type="password" name="password">
+                                        <input type="password" id="password" name="password">
                                     </div>
                                     <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
                                         <label for="checkbox">
                                             <input type="checkbox" name="checkbox"> Remember me
                                         </label>
                                     </div>
-                                    <div class="field padding-bottom--24">
-                                        <input type="submit" name="submit" value="Continue">
-                                    </div>
+                                    <button class="field padding-bottom--24" id="submitBtn">
+                                        Continue
+                                    </button>
                                     <div class="field">
 
                                     </div>

@@ -4,16 +4,14 @@
   -moz-osx-font-smoothing: grayscale;
   font-weight: 600;
 }
-body {
-  min-height: 100%;
-  background-color: #ffffff;
-}
+
 #mainNavbar {
   padding-top: 1%;
+  padding-bottom: 1%;
 }
 nav {
-  padding-bottom: 10%;
-  /* background: #532cff; */
+  padding-bottom: 12%;
+  background: #532cff;
 }
 .container {
   display: flex;
@@ -29,24 +27,10 @@ nav {
 }
 
 nav.scrolled {
-  background: #532cff;
+  background: #6746f9;
 }
 
-#login {
-  display: inline-block;
-  /* box-sizing: border-box; */
-  height: 3rem;
-  background: #dbdfeb;
-  opacity: 0.8;
-  padding: 0px 25px;
-  border-radius: 999em;
-  text-decoration: none;
-  color: #fff;
-  font-size: 16px;
-  vertical-align: bottom;
-  white-space: nowrap;
-  border: 3px solid #88a1ec;
-}
-#login:hover {
-  background: #fff;
+#welcome {
+  color: #ffffff;
+  font-size: 1.2em;
 }
