@@ -52,12 +52,41 @@ nav.scrolled {
 }
 
 h1 {
+  opacity: 0;
+  animation: drop 0.4s linear forwards;
   letter-spacing: -1px;
   color: #3a0ca3;
   font-weight: bold;
   text-align: center;
   font-size: 4rem;
 }
+
+@keyframes drop {
+  0% {
+    transform: translateY(-200px) scaleY(0.9);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(0px) scaleY(1);
+    opacity: 1;
+  }
+  65% {
+    transform: translateY(-17px) scaleY(0.9);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-22px) scaleY(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px) scaleY(1);
+    opacity: 1;
+  }
+}
+
 a {
   color: #5469d4;
   text-decoration: unset;
