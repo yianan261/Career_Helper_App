@@ -1,17 +1,17 @@
 import { v4 as uuidv4 } from "uuid";
 
-let users = [
-  {
-    firstName: "John",
-    lastName: "Doe",
-    age: 25,
-  },
-  {
-    firstName: "Jane",
-    lastName: "Doe",
-    age: 27,
-  },
-];
+// let users = [
+//   {
+//     firstName: "John",
+//     lastName: "Doe",
+//     age: 25,
+//   },
+//   {
+//     firstName: "Jane",
+//     lastName: "Doe",
+//     age: 27,
+//   },
+// ];
 const createUser = (req, res) => {
   const user = req.body;
   users.push({ ...user, id: uuidv4() });
