@@ -8,7 +8,7 @@ const mongoConnect = () => {
   const run = async () => {
     try {
       await client.connect();
-      console.log("connected success");
+      console.log("connected to MongoDB successfully");
     } finally {
       await client.close();
     }

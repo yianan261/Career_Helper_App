@@ -1,8 +1,8 @@
 //password verification
 
 const val = {};
-let pass = document.querySelector("#password");
-let confirm = document.querySelector("#confirm");
+const pass = document.querySelector("#password");
+const confirm = document.querySelector("#confirm");
 const check = document.querySelector(".verify");
 
 pass.addEventListener("input", (evt) => {

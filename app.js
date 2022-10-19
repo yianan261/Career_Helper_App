@@ -2,10 +2,13 @@ const express = require("express");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const tasks = require("./routes/tasks");
-const register = require("./routes/register");
 const errorController = require("./controllers/error");
 const mongoConnect = require("./config/db");
-// const { MongoClient } = require("mongodb");
+const register = require("./routes/register");
+const signIn = require("./routes/sign-in");
+const profile = require("./routes/profile");
+const jobs = require("./routes/jobs");
+const tracker = require("./routes/tracker");
 const path = require("path");
 
 dotenv.config({ path: "./config/config.env" });
@@ -20,29 +23,13 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/tasks", tasks);
 app.use("/register", register);
+app.use("/sign-in", signIn);
+app.use("/profile", profile);
+app.use("/tracker", tracker);
+app.use("/jobs", jobs);
 
 app.get("/", (req, res, next) => {
   res.status(200).sendFile(path.join(__dirname, "views", "index.html"));
-});
-
-app.get("/register", (req, res, next) => {
-  res.status(200).sendFile(path.join(__dirname, "views", "register.html"));
-});
-
-app.get("/sign-in", (req, res, next) => {
-  res.status(200).sendFile(path.join(__dirname, "views", "sign-in.html"));
-});
-
-app.get("/profile", (req, res, next) => {
-  res.status(200).sendFile(path.join(__dirname, "views", "profile.html"));
-});
-
-app.get("/tracker", (req, res, next) => {
-  res.status(200).sendFile(path.join(__dirname, "views", "tracker.html"));
-});
-
-app.get("/jobs", (req, res, next) => {
-  res.status(200).sendFile(path.join(__dirname, "views", "jobs.html"));
 });
 
 //redirects to index.html
@@ -50,7 +37,7 @@ app.get("/home", (req, res) => {
   res.status(200).redirect("/");
 });
 
-// //if not found
+//if not found
 app.use(errorController.get404);
 
 app.listen(
