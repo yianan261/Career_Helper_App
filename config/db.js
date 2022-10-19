@@ -9,6 +9,9 @@ const mongoConnect = () => {
     try {
       await client.connect();
       console.log("connected to MongoDB successfully");
+    } catch (err) {
+      console.error(err);
+      throw new Error(`Something Failed`);
     } finally {
       await client.close();
     }
