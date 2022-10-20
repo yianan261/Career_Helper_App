@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const tasks = require("./routes/tasks");
 const errorController = require("./controllers/error");
-const {mongoConnect} = require("./config/db");
+const { mongoConnect } = require("./config/db");
 const register = require("./routes/register");
 const signIn = require("./routes/sign-in");
 const profile = require("./routes/profile");
@@ -17,6 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "public")));
 // app.use(express.static("./public"));
