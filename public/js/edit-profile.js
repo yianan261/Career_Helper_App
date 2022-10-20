@@ -1,6 +1,6 @@
 const addExperience = document.getElementById("add");
 const experienceDiv = document.querySelector(".expDiv");
-let count = 0;
+
 const addOne = () => {
   const newInput = document.createElement("textarea");
   const newDiv = document.createElement("textarea");
@@ -9,7 +9,6 @@ const addOne = () => {
   newInput.rows = "3";
   //   newInput.classList.add("new-form");
   newInput.placeholder = "experience";
-  count += 1;
   const deleteBtn = document.createElement("button");
 
   deleteBtn.innerHTML = "-";
