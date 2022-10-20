@@ -1,21 +1,15 @@
-import { v4 as uuidv4 } from "uuid";
+const { v4: uuidv4 } = require("uuid");
+const User = require("../models/users");
 
-// let users = [
-//   {
-//     firstName: "John",
-//     lastName: "Doe",
-//     age: 25,
-//   },
-//   {
-//     firstName: "Jane",
-//     lastName: "Doe",
-//     age: 27,
-//   },
-// ];
 const createUser = (req, res) => {
-  const user = req.body;
-  users.push({ ...user, id: uuidv4() });
-  res.send(`user with the name ${user.firstName} added to DB!`);
+  const user = new User(
+    req.body.name,
+    uuidv4(),
+    req.body.email,
+    req.body.phone
+  );
+  user.save();
+  res.send(`user with the name ${user.name} added to DB!`);
 };
 
 const getUser = (req, res) => {
