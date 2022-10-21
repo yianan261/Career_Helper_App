@@ -1,4 +1,4 @@
-//dummy list for testing
+//dummy array for testing
 const users = [];
 
 module.exports = class User {
@@ -14,9 +14,9 @@ module.exports = class User {
     // users.push(this);
   }
 
-  //util function not called on the instance, to fecth user data
-  static fetchUser() {
-    //will come back later to figure out logistics
-    return users;
-  }
+  // //util function not called on the instance, to fecth user data
+  // static fetchUser() {
+  //   //will come back later to figure out logistics
+  //   return users;
+  // }
 };

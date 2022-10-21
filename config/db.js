@@ -11,13 +11,14 @@ const mongoConnect = () => {
     try {
       await client.connect();
       console.log("connected to MongoDB successfully");
-      _db = client.db();
+      _db = client.db("careerHelperMembers");
     } catch (err) {
       console.error(err);
       throw new Error(`Something Failed`);
-    } finally {
-      await client.close();
     }
+    //  finally {
+    //   await client.close();
+    // }
   };
 
   run().catch(console.dir);
