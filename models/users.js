@@ -10,7 +10,7 @@ module.exports = class User {
   }
   save() {
     users.push({ ...this });
-    console.log(users);
+    console.log("USERS", users);
     // users.push(this);
   }
 

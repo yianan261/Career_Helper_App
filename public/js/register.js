@@ -42,18 +42,24 @@ const submit = async () => {
   if (email.value.trim() == "" || password.value.trim() == "") {
     alert("Please enter correct email and password");
   } else {
-    const userData = createUser(form, fieldsMap);
-    console.log("LOGS", userData);
-    await fetch("http://localhost:3000/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    }).then((response) => {
-      response;
-      console.log(response.body);
-    });
+    try {
+      const userData = createUser(form, fieldsMap);
+      console.log("USER DATA", userData);
+      await fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        body: JSON.stringify(userData),
+      })
+        .then((response) => {
+          response.json();
+          console.log("response.body", response.body);
+        })
+        .then((data) => console.log(data));
+    } catch (err) {
+      console.error(err);
+    }
   }
 };
 if (form) {
