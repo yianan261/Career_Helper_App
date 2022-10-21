@@ -52,9 +52,10 @@ const submit = async () => {
         },
         body: JSON.stringify(userData),
       })
-      .then((response)=>response.json())
-      .then((data)=>console.log(data))
+        .then((response) => response.json())
+        .then((data) => console.log(data));
       // .then((data) => console.log(data));
+      location.href = "/sign-in";
     } catch (err) {
       console.error(err);
     }

@@ -2,6 +2,7 @@ const btn = document.getElementById("submitBtn");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const form = document.querySelector(".loginForm");
+const mongoDBConnection = require("../config/db");
 
 /**
  *
@@ -21,12 +22,19 @@ const loginFunc = (form, fieldsMap) => {
 
   //set values for the fields keys
   for (const key of logs.fieldsMap.keys()) {
+    console.log(key);
     const input = document.querySelector(`#${key}`);
     console.log(input.value);
     logs.fieldsMap.set(`${key}`, input.value);
   }
-
   return logs;
+};
+
+const findUser = async (_email) => {
+  const cursor = users.find({ email: _email });
+  const value = await cursor.toArray();
+  console.log(value);
+  //returns password to match to login password of user
 };
 
 //validates username and password input and stores session in localStorage
@@ -37,6 +45,7 @@ if (form) {
   btn.addEventListener("click", (evt) => {
     if (email.value.trim() == "" || password.value.trim() == "") {
       alert("Please enter correct email and password");
+    } else if (password.value !== findUser(email.value)) {
     } else {
       //add validating function later
       const credentials = loginFunc(form, fieldsMap);

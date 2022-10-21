@@ -1,16 +1,4 @@
-const { v4: uuidv4 } = require("uuid");
-const User = require("../models/users");
 
-const createUser = (req, res) => {
-  const user = new User(
-    req.body.name,
-    uuidv4(),
-    req.body.email,
-    req.body.phone
-  );
-  user.save();
-  res.send(`user with the name ${user.name} added to DB!`);
-};
 
 const getUser = (req, res) => {
   res.send(users);
@@ -38,5 +26,7 @@ const updateUser = (req, res) => {
   if (age) userToBeUpdated.age = age;
   res.send(`user with id ${id} has been updated`);
 };
+
+
 
 module.exports = { createUser, getUser, getID, deleteUser, updateUser };
