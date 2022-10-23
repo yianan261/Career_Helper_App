@@ -16,7 +16,13 @@ dotenv.config({ path: "./config/config.env" });
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(session({secret:"key that will sign cookie",resave:false,saveUninitialized:false,}))
+app.use(
+  session({
+    secret: "key that will sign cookie",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -31,28 +37,10 @@ app.use("/profile", profile);
 app.use("/sign-in", signIn);
 app.use("/tracker", tracker);
 
+//if not found
 app.get("*", (req, res) => {
   res.status(404).sendFile(path.join(__dirname, "/views/404.html"));
 });
-
-// app.use("/tasks", tasks);
-//app.use("/register", register);
-// app.use("/sign-in", signIn);
-// app.use("/profile", profile);
-// app.use("/tracker", tracker);
-// app.use("/jobs", jobs);
-
-// app.get("/", (req, res) => {
-//   res.status(200).sendFile(path.join(__dirname, "views", "index.html"));
-// });
-
-//redirects to index.html
-// app.get("/home", (req, res) => {
-//   res.status(200).redirect("/");
-// });
-
-//if not found
-// app.use(errorController.get404);
 
 app.listen(
   PORT,
