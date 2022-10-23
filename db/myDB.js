@@ -46,14 +46,14 @@ function MyMongoDB() {
     }
   };
   //function that gets user info by email
-  myDB.getUser = async (user) => {
+  myDB.getUser = async (_email) => {
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      console.log(`getting user with email ID of ${user.email}`);
-      const res = await usersCol.findOne({ email: user.email });
+      console.log(`getting user with email ID of ${_email}`);
+      const res = await usersCol.findOne({ email: _email });
       console.log("Got user", res);
       return res;
     } finally {
