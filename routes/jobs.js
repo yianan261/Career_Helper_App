@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const jobs = require("../controllers/jobs");
+// const jobs = require("../controllers/jobs");
 
-router.get("/", jobs);
+//Yian Chen
+router.get("/", (req, res) => {
+  res.redirect("/jobs.html");
+});
+
 module.exports = router;

@@ -1,3 +1,4 @@
+//Yian Chen
 let navbar = document.querySelector("nav");
 const button = document.querySelector("#login");
 

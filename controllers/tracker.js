@@ -1,6 +1,7 @@
 const path = require("path");
 
-const tracker = (req, res, next) => {
+//Yian Chen
+const tracker = (req, res) => {
   res
     .status(200)
     .sendFile(path.join(__dirname, "../", "views", "tracker.html"));

@@ -1,6 +1,10 @@
 const addExperience = document.getElementById("add");
 const experienceDiv = document.querySelector(".expDiv");
 
+//Yian Chen
+/**
+ * function that allows users to add/delete experience in profile
+ */
 const addOne = () => {
   const newInput = document.createElement("textarea");
   const newDiv = document.createElement("textarea");

@@ -1,8 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const signIn = require("../controllers/sign-in");
+// const { register, createUser } = require("../controllers/register");
+const myDB = require("../db/myDB");
 
-// router.route("/").get(register);
-router.get("/", signIn);
+//Yian Chen
+router.post("/", async (req, res) => {
+  const user = req.body;
+  //check if we password matches db password
+  if (await myDB.authenticate(user)) {
+    req.session.user = user.email;
+    res.redirect("/?msg=authenticated");
+  } else {
+    res.redirect("/?msg=error_authenticating");
+  }
+});
 
 module.exports = router;
