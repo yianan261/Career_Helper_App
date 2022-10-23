@@ -6,7 +6,7 @@ const register = require("../controllers/register");
 router.route("/").post(register);
 
 router.get("/", (req, res) => {
-  res.redirect("/register.html");
+  res.status(200).redirect("/register.html");
 });
 
 module.exports = router;

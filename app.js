@@ -4,7 +4,9 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const register = require("./routes/register");
 const jobs = require("./routes/jobs");
-
+const profile = require("./routes/profile");
+const signIn = require("./routes/sign-in");
+const tracker = require("./routes/tracker");
 // const { mongoConnect } = require("./config/db");
 
 //Yian Chen
@@ -23,6 +25,9 @@ app.use(express.static("./public"));
 
 app.use("/register", register);
 app.use("/jobs", jobs);
+app.use("/profile", profile);
+app.use("/sign-in", signIn);
+app.use("/tracker", tracker);
 
 app.get("*", (req, res) => {
   res.status(404).sendFile(path.join(__dirname, "/views/404.html"));

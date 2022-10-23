@@ -4,7 +4,7 @@ const router = express.Router();
 
 //Yian Chen
 router.get("/", (req, res) => {
-  res.redirect("/jobs.html");
+  res.status(200).redirect("/jobs.html");
 });
 
 module.exports = router;

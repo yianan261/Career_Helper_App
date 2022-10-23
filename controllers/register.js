@@ -7,11 +7,11 @@ const register = async (req, res) => {
   user = req.body;
   try {
     await myDB.createUser(user);
-    return res.redirect("/sign-in.html");
+    return res.status(201).redirect("/sign-in.html");
   } catch (err) {
     console.error("error", err);
     res.status(400).send({ err: err });
   }
 };
 
-module.exports =  register ;
+module.exports = register;
