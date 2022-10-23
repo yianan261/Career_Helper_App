@@ -7,6 +7,7 @@ const jobs = require("./routes/jobs");
 const profile = require("./routes/profile");
 const signIn = require("./routes/sign-in");
 const tracker = require("./routes/tracker");
+const session = require("express-session");
 // const { mongoConnect } = require("./config/db");
 
 //Yian Chen
@@ -15,6 +16,7 @@ dotenv.config({ path: "./config/config.env" });
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(session({secret:"key that will sign cookie",resave:false,saveUninitialized:false,}))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

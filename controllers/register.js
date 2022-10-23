@@ -10,15 +10,15 @@ const register = async (req, res) => {
     if (user.email != undefined && checker === null) {
       await myDB.createUser(user);
       res.status(201).redirect("/sign-in.html");
-    } else if (user.email != undefined && user.email === checker.email) {
-      console.log("CHECKER EXISTS");
-      // if the email is already registered
-      // res.json(JSON.stringify());
-      // console.log("RES", res);
-      res.send({ user: checker });
-      // res.send({ checker: checker });
     } else {
-      res.status(200);
+      if (user.email === checker.email) {
+        console.log("CHECKER EXISTS");
+        // if the email is already registered
+        // res.json(JSON.stringify());
+        // console.log("RES", res);
+        res.send({ user: checker });
+        // res.send({ checker: checker });
+      }
     }
   } catch (err) {
     console.error("error", err);
