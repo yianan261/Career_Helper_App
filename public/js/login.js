@@ -9,11 +9,22 @@ function Login() {
 
     console.log("urlParams", params.msg);
     if (params.msg) {
-      msgDiv.querySelector("#content").innerHTML = params.msg;
-      msgDiv.style.display = "block";
+      console.log("logged");
     }
   };
+  const isLoggedIn = async () => {
+    const res = await fetch("/getUser");
+    const user = await res.json();
+    if (user.email) {
+      console.log("authenticated!");
+    }
+    return user.email !== undefined;
+  };
+
+  checkForErrors();
+  isLoggedIn();
 }
+Login();
 // const btn = document.getElementById("submitBtn");
 // const email = document.getElementById("email");
 // const password = document.getElementById("password");

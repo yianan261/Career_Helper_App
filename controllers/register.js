@@ -27,4 +27,7 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = register;
+const userSession = (req, res) => {
+  res.json({ user: req.session.user });
+};
+module.exports = { register, userSession };
