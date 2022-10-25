@@ -93,6 +93,7 @@
   justify-content: space-between;
   padding: 20px;
   background-color: rgba(69, 118, 233, 0.2);
+  border-radius: 1rem;
 }
 
 .overviewcard:hover {

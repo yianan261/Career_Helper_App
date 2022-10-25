@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const authenticate = require("../controllers/register");
+const authenticate = require("../controllers/sign-in");
 
 //Yian Chen
 router.post("/", authenticate);
