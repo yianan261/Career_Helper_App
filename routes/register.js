@@ -9,4 +9,5 @@ router.get("/", (req, res) => {
   res.status(200).redirect("/register.html");
 });
 
+
 module.exports = router;

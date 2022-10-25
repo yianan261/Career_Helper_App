@@ -1,10 +1,25 @@
-const btn = document.getElementById("submitBtn");
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const form = document.querySelector(".loginForm");
+//Yian Chen
+//Login authentication module
+function Login() {
+  const checkForErrors = () => {
+    // From  https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+
+    console.log("urlParams", params.msg);
+    if (params.msg) {
+      msgDiv.querySelector("#content").innerHTML = params.msg;
+      msgDiv.style.display = "block";
+    }
+  };
+}
+// const btn = document.getElementById("submitBtn");
+// const email = document.getElementById("email");
+// const password = document.getElementById("password");
+// const form = document.querySelector(".loginForm");
 // const mongoDBConnection = require("../config/db");
 
-// //Yian Chen
 // /**
 //  *
 //  * @param {event form} form

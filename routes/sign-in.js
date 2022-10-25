@@ -9,4 +9,7 @@ router.get("/", (req, res) => {
   res.status(200).redirect("/sign-in.html");
 });
 
+router.get("/?msg=error_authenticating", (req, res) => {
+  res.status(401).redirect("/sign-in.html");
+});
 module.exports = router;

@@ -7,7 +7,7 @@ const authenticate = async (req, res) => {
   //check if we password matches db password
   if (await myDB.authenticate(user)) {
     req.session.user = user.email;
-    res.redirect("/?msg=authenticated");
+    res.redirect("/profile/?msg=authenticated");
   } else {
     res.redirect("/?msg=error_authenticating");
   }
