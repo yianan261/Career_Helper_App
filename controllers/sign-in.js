@@ -1,10 +1,15 @@
-const path = require("path");
+const myDB = require("../db/myDB");
 
 //Yian Chen
-const signIn = (req, res, next) => {
-  res
-    .status(200)
-    .sendFile(path.join(__dirname, "../", "views", "sign-in.html"));
+const authenticate = async (req, res) => {
+  const user = req.body;
+  console.log("User", user);
+  //check if we password matches db password
+  if (await myDB.authenticate(user)) {
+    req.session.user = user.email;
+    res.redirect("/?msg=authenticated");
+  } else {
+    res.redirect("/?msg=error_authenticating");
+  }
 };
-
-module.exports = signIn;
+module.exports = authenticate;

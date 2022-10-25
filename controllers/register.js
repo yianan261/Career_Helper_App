@@ -13,10 +13,11 @@ const register = async (req, res) => {
     } else {
       if (user.email === checker.email) {
         console.log("CHECKER EXISTS");
+        return res.status(200).send(checker);
         // if the email is already registered
         // res.json(JSON.stringify());
         // console.log("RES", res);
-        res.send({ user: checker });
+        // res.send({ user: checker });
         // res.send({ checker: checker });
       }
     }

@@ -19,6 +19,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Open+Sans:wght@300&family=Poppins:wght@100;400&display=swap"
         rel="stylesheet">
+    <!--Font Awsome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <title>My Profile</title>
 
 </head>
@@ -51,14 +53,59 @@
             <span id="welcome">Welcome!</span>
 
     </nav>
-    <div class="container-xl mainDiv">
-        <main>
-            <!-- temporary button-->
+    <!-- <div class="container-xl mainDiv"> -->
+    <!-- <main>
             <button><a href="/profile/edit-profile">Edit Profile</a></button>
+        </main> -->
+    <div class="grid-container">
+        <!-- <header class="header"></header> -->
 
-            </section>
+        <aside class="sidenav">
+            <ul class="sidenav__list">
+                <li class="sidenav__list-item "><i class="fa-solid fa-pen-to-square"></i>&nbsp<a class="editProf"
+                        href="/profile/edit-profile">Edit Profile</a></li>
+                <li class="sidenav__list-item"><i class="fa-solid fa-envelope"></i>&nbsp Messages</li>
+                <li class="sidenav__list-item"><i class="fa-solid fa-gear"></i>&nbsp Account Settings</li>
+                <li class="sidenav__list-item"><i class="fa-solid fa-calendar"></i>&nbsp Calendar</li>
+                <li class="sidenav__list-item"><i class="fa-solid fa-file"></i>&nbsp Documents</li>
+            </ul>
+        </aside>
+
+
+        <main class="main">
+            <div class="main-header__heading greet">Hello User</div>
+
+            <div class="main-overview">
+                <div class="overviewcard">
+                    <div class="overviewcard__icon"><i class="fa-solid fa-folder-open"></i></div>
+                    <div class="overviewcard__info">New Document</div>
+                </div>
+                <div class="overviewcard">
+                    <div class="overviewcard__icon"><i class="fa-solid fa-bell"></i></div>
+                    <div class="overviewcard__info">Notifications</div>
+                </div>
+                <div class="overviewcard">
+                    <div class="overviewcard__icon"><i class="fa-solid fa-calendar-week"></i></div>
+                    <div class="overviewcard__info">Events</div>
+                </div>
+                <div class="overviewcard">
+                    <div class="overviewcard__icon"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="overviewcard__info">Job Alerts</div>
+                </div>
+            </div>
+            <div class="main-cards">
+                <div class="card">Chart</div>
+                <div class="card">Profile 1</div>
+                <div class="card">Profile 2</div>
+            </div>
         </main>
+
+        <footer class="footer">
+            <div class="footerCopyright">&copy; 2022 Career Helper</div>
+
+        </footer>
     </div>
+    <!-- </div> -->
 </body>
 
 <script src="/js/jobs.js"></script>
