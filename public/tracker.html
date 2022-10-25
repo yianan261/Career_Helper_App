@@ -52,12 +52,64 @@
 
     </nav>
     <div class="container-xl mainDiv">
-        <!--Content Here-->
+        <h1>My Tracker</h1>
+        <div class="container text-center" id="tracker-title">
+            <div class="row row-cols-6">
+            <div class="col">
+            </div>
+              <div class="col">
+                Company Name
+              </div>
+              <div class="col">
+                Position
+              </div>
+              <div class="col">
+                Application Link
+              </div>
+              <div class="col">
+                Job Opening Date
+              </div>
+              <div class="col">
+                Status
+              </div>
+            </div>
+          </div>
+          <form action="/tracker" method="post">
+          <div class="container text-center" id="tracker-content">
+            <div class="row row-cols-6">
+                <div class="col">
+                <button type="submit" value="add">+</button>
+                </div>
+              <div class="col">
+                <input type="text" name="company" id="new-input" placeholder="Company Name">
+              </div>
+              <div class="col">
+                <input type="text" name="position" id="new-input" placeholder="Position">
+              </div>
+              <div class="col">
+                <input type="url" name="appLink" id="new-input" placeholder="https://example.com">
+              </div>
+              <div class="col">
+                <input type="date" id="new-input" name="openDate">
+              </div>
+              <div class="col">
+                <select id="status" name="status">
+                    <option value="default">Not Applied</option>
+                    <option value="applied">Applied</option>
+                    <option value="interview">Interview</option>
+                    <option value="offer">Offer</option>
+                    <option value="reject">Reject</option>
+                    <option value="withdraw">Withdraw</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
 
     </div>
 </body>
 
 <script src="/js/jobs.js"></script>
 <script src="/node_modules/d3-dsv/dist/d3-dsv.min.js"></script>
-
+<script src="/js/my-tracker.js"></script>
 </html>

@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
-// const tracker = require("../controllers/tracker");
+const {getAllTracker, tracker} = require("../controllers/tracker");
+
+router.route("/tracker.html").get(getAllTracker);
+router.route("/").post(tracker);
 
 router.get("/", (req, res) => {
   res.status(200).redirect("/tracker.html");

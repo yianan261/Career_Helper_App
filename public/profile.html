@@ -19,6 +19,80 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Open+Sans:wght@300&family=Poppins:wght@100;400&display=swap"
         rel="stylesheet">
+
+    <!-- google charts api -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
+  
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+  
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+  
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Status');
+          data.addColumn('number', 'Applications');
+          data.addRows([
+            ['Jobs Saved', 15],
+            ['Applications', 12],
+            ['Interviews', 8],
+            ['Offers', 3],
+          ]);
+  
+          // Set chart options
+          var options = {'title':'Job Hunting Progress',
+                         'width':400,
+                         'height':300};
+  
+          // Instantiate and draw our chart, passing in some options.
+          var chart = new google.visualization.ColumnChart(document.getElementById('column_div'));
+          chart.draw(data, options);
+        }
+      </script>
+
+      <script type="text/javascript">
+
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
+  
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+  
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+  
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Tools');
+          data.addColumn('number', 'confidence');
+          data.addRows([
+            ['JavaScript', 15],
+            ['HTML/CSS', 12],
+            ['SQL', 8],
+            ['Python', 3],
+            ['Java', 3],
+          ]);
+  
+          // Set chart options
+          var options = {'title':'Technical Skills',
+                         'width':300,
+                         'height':300};
+  
+          // Instantiate and draw our chart, passing in some options.
+          var chart = new google.visualization.BarChart(document.getElementById('bar_div'));
+          chart.draw(data, options);
+        }
+      </script>
+
     <title>My Profile</title>
 
 </head>
@@ -53,6 +127,22 @@
     </nav>
     <div class="container-xl mainDiv">
         <main>
+            <div class="wrapper">
+                <div class="header">User Profile</div>
+                <div class="sidebar">
+                    
+                    <div id="bar_div"></div>
+                    Interested Roles:
+
+                    Skills to work on:
+
+
+                </div>
+                <div class="content">
+                    <div id="column_div"></div>
+                </div>
+                <div class="footer">Footer</div>
+              </div>
             <!-- temporary button-->
             <button><a href="/profile/edit-profile">Edit Profile</a></button>
 
@@ -61,7 +151,8 @@
     </div>
 </body>
 
-<script src="/js/jobs.js"></script>
+<script src="/js/profile.js"></script>
 <script src="/node_modules/d3-dsv/dist/d3-dsv.min.js"></script>
+<script src="/js/myProfile.js"></script>
 
 </html>

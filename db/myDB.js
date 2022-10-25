@@ -12,6 +12,8 @@ function MyMongoDB() {
   const url = process.env.MONGO_URI || "mongodb://localhost:27017";
   const DB_NAME = "careerHelperMembers";
   const USER_COLLECTION = "user";
+  const TRACKER_COLLECTION = "tracker";
+
   //function that authenticates users
   myDB.authenticate = async (user) => {
     let client;
@@ -55,6 +57,41 @@ function MyMongoDB() {
       console.log(`getting user with email ID of ${_email}`);
       const res = await usersCol.findOne({ email: _email });
       console.log("Got user", res);
+      return res;
+    } finally {
+      console.log("Closing the connection");
+      client.close();
+    }
+  };
+
+  // Amanda Au-Yeung
+  // function to get tracker
+  myDB.createTracker = async (tracker) =>{
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const trackerCol = db.collection(TRACKER_COLLECTION);
+      const res = await trackerCol.insertOne(tracker);
+      console.log("Inserted!", res);
+      return res;
+    } finally {
+      console.log("Closing the connection");
+      client.close();
+    }
+  };
+
+  // Amanda Au-Yeung
+  //function that gets tracker info by companies
+  myDB.getAllTracker = async (companies) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const trackerCol = db.collection(TRACKER_COLLECTION);
+      console.log(`getting user with companies of ${companies}`);
+      const res = await trackerCol.findOne({ company: companies });
+      console.log("Got companies", res);
       return res;
     } finally {
       console.log("Closing the connection");
