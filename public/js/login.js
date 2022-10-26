@@ -23,7 +23,6 @@ function Login() {
 
   checkForErrors();
   isLoggedIn();
-  //test
 }
 Login();
 // const btn = document.getElementById("submitBtn");
