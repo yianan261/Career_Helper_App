@@ -1,3 +1,52 @@
 .mainDiv {
   padding-top: 6%;
 }
+
+h1 {
+  padding: 2rem 1rem;
+}
+
+#tracker-title {
+  display: grid;
+  background-color: rgb(118, 118, 233);
+  padding: 10px;
+  border-radius: 1rem;
+}
+
+#tracker-content {
+  display: grid;
+  background-color: rgb(199, 199, 233);
+  padding: 10px;
+  border-radius: 1rem;
+}
+
+input, select {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+#new-input {
+  background-color:rgb(193, 193, 233);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+#new-input::placeholder{
+  color:grey;
+}
+
+#status {
+  background-color:rgb(193, 193, 233);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 1rem;
+}

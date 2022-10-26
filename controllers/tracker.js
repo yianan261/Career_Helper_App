@@ -1,10 +1,22 @@
-const path = require("path");
+const myDB = require("../db/myDB");
 
 //Yian Chen
-const tracker = (req, res) => {
-  res
-    .status(200)
-    .sendFile(path.join(__dirname, "../", "views", "tracker.html"));
+const tracker = async (req, res) => {
+  // So Man Amanda Au-Yeung
+  console.log("tracker test:", req.body);
+  // insert MongoDB
+  await myDB.createTracker(req.body);
+  res.status(201).redirect("/tracker.html");
+  // test
 };
 
-module.exports = tracker;
+// So Man Amanda Au-Yeung
+const getAllTracker = async (req, res) => {
+  // findAll
+  const info = await myDB.getAllTracker(req.body.company);
+  console.log("info", info);
+  res.send(info);
+  // return json
+};
+
+module.exports = { tracker, getAllTracker };
