@@ -3,10 +3,20 @@ function Registration() {
   const form = document.getElementById("stripe-login2");
   const submitBtn = document.getElementById("submitBtn");
   const email = document.querySelector("[name='email']");
-
+  const data = {
+    name: "Yian",
+    email: "ychen151@nyit.edu",
+    password: "123",
+    "confirm-password": "123",
+    phone: "9165973444",
+  };
   const isRegistered = async (_email) => {
     try {
       console.log("check1");
+      // const user = await fetch("http://localhost:3000/register",{
+      //   method: "POST",
+      //   body: JSON.stringify(data)
+      // });
       const user = await fetch("/register");
       console.log("check2");
       console.log("check User", user);
