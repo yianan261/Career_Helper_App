@@ -7,6 +7,7 @@ const tracker = async (req, res) => {
   // insert MongoDB
   await myDB.createTracker(req.body);
   res.status(201).redirect("/tracker.html");
+  // test
 };
 
 // So Man Amanda Au-Yeung
