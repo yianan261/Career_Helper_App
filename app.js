@@ -27,9 +27,6 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// app.use(express.static(path.join(__dirname, "public")));
-// app.use(express.static(path.join(__dirname, "node_modules/d3-dsv")));
-
 app.use(express.static("./public"));
 
 app.use("/register", register);

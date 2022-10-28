@@ -1,28 +1,110 @@
 //Yian Chen
 //Login authentication module
 function Login() {
-  const checkForErrors = () => {
-    // From  https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-      get: (searchParams, prop) => searchParams.get(prop),
+  const clientUser = {};
+  const divMsg = document.querySelector("div#msg");
+
+  let currentUser = null;
+  const showMsg = (msg) => {
+    divMsg.querySelector("#msgContent").innerHTML = msg;
+    divMsg.style.display = "block";
+  };
+
+  // //function that renders user profile when user is logged in
+  // const renderProfile(user_profile){
+
+  // }
+
+  // //function that renders user tracker when user is logged in
+  // const renderTracker(user_tracker){
+
+  // }
+
+  //function that gets db data and calls render profile when user is logged in
+  const getProfile = async () => {
+    let res;
+    try {
+      res = await fetch("./getUserProfile");
+      const profile = await res.json();
+      renderProfile(profile);
+    } catch (err) {
+      alert(`There is an error ${err}`);
+      console.error(err);
+    }
+  };
+  const redirect = (page) => {
+    window.location.replace(`/${page}`);
+  };
+
+  //function that checks if user is logged in, in order to call getProfile and getTracker
+  const getCurrUser = async () => {
+    let res;
+    try {
+      res = await fetch("./getUser");
+      const resUser = await res.json();
+      if (resUser.isLoggedIn) {
+        //if user is logged in render profile and tracker
+        currUser = resUser.user;
+        getProfile();
+        //getTracker() -> amanda implement
+      }
+      //else if not logged in, redirect to logged in
+      else {
+        currUser = null;
+        redirect("login");
+      }
+    } catch (err) {
+      alert(`There is an error, ${err}`);
+      console.error(err);
+    }
+  };
+
+  //function that listens to form and on submit authenticates user login
+  clientUser.setupLogin = () => {
+    console.log("setup login");
+    const form = document.querySelector("form#stripe-login");
+    let res;
+    form.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      console.log("authenticating");
+      authenticate();
     });
-
-    console.log("urlParams", params.msg);
-    if (params.msg) {
-      console.log("logged");
-    }
+    //authenticate function
+    const authenticate = async () => {
+      try {
+        res = await fetch("./authenticate", {
+          method: "POST",
+          body: new URLSearchParams(new FormData(form)),
+        });
+        const resUser = await res.json();
+        //if user is logged in, redirect to profile page
+        if (resUser.isLoggedIn) {
+          redirect("profile");
+        } else {
+          showMsg(resUser.err);
+        }
+      } catch (err) {
+        alert(`There is an error, ${err}`);
+        console.error(err);
+      }
+    };
+    //function that logs user out
+    clientUser.setupLogout = () => {
+      const linkLoutout = document.querySelector("#linkLogout");
+      let res;
+      linkLogout.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        console.log("logout");
+        logout();
+      });
+      const logout = async () => {
+        res = await fetch("/logout");
+        const resLogout = await res.json();
+        showMsg(resLogout.msg);
+        setTimeout(() => redirect("/login", 2000));
+      };
+    };
   };
-  const isLoggedIn = async () => {
-    const res = await fetch("/sign-in/getUser");
-    const user = await res.json();
-    if (user.email) {
-      console.log("authenticated!");
-    }
-    return user.email !== undefined;
-  };
-
-  checkForErrors();
-  isLoggedIn();
 }
 Login();
 // const btn = document.getElementById("submitBtn");

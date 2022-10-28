@@ -1,5 +1,3 @@
-// const { response } = require("express");
-
 //Yian Chen
 function Registration() {
   const form = document.getElementById("stripe-login2");
@@ -12,17 +10,13 @@ function Registration() {
    */
   const isRegistered = async () => {
     try {
-      // const user = await fetch("http://localhost:3000/register",{
-      //   method: "POST",
-      //   body: JSON.stringify(data)
-      // });
       const user = await fetch("./register", {
         method: "POST",
         body: new URLSearchParams(new FormData(form)),
       });
       const res = await user.json();
       console.log("res", res);
-
+      //if there is registration error, show error
       if (res.error) {
         if (res.err === "email") {
           emailErr.classList.add("input_error");
@@ -32,15 +26,16 @@ function Registration() {
           alert(res.error);
         }
       } else {
+        //registration success, redirect to sign-in page
         alert(res.message);
         window.location.replace("/sign-in");
       }
     } catch (err) {
-      // TODO: create a show error function
+      alert(`There is an error ${err}`);
       console.error(err);
     }
   };
-  //Need to set event listener to submit and preventDefault
+  //Need to set form event listener to submit and preventDefault
   if (form) {
     form.addEventListener("submit", (evt) => {
       evt.preventDefault();

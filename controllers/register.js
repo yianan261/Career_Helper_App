@@ -2,7 +2,6 @@ const myDB = require("../db/myDB.js");
 
 //Yian Chen
 const register = async (req, res) => {
-  console.log("POST register", req.body);
   let user;
   let checker;
   try {
@@ -22,12 +21,11 @@ const register = async (req, res) => {
       if (user.password !== user.confirm_password) {
         res.json({ error: "Passwords not matching", err: "password" });
       } else if (user.email === checker.email) {
-        res
-          .status(200)
-          .json({ error: "User email already exists", err: "email" });
+        res.json({ error: "User email already exists", err: "email" });
       }
     }
   } catch (err) {
+    //Todo: show error in frontend
     console.error("error", err);
     res.status(400).send({ err: err });
   }
