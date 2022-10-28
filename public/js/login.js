@@ -13,7 +13,7 @@ function Login() {
     }
   };
   const isLoggedIn = async () => {
-    const res = await fetch("/getUser");
+    const res = await fetch("/sign-in/getUser");
     const user = await res.json();
     if (user.email) {
       console.log("authenticated!");

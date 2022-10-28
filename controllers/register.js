@@ -1,24 +1,30 @@
-const myDB = require("../db/myDB");
+const myDB = require("../db/myDB.js");
 
 //Yian Chen
 const register = async (req, res) => {
   console.log("POST register", req.body);
+  let user;
+  let checker;
   try {
-    const user = req.body;
-    const checker = await myDB.getUser(user.email);
-    console.log("Checker", checker);
-    if (user.email != undefined && checker === null) {
+    user = req.body;
+    checker = await myDB.getUser(user.email);
+    console.log("Checker", user, checker);
+    if (
+      user.email != undefined &&
+      checker === null &&
+      user.password === user.confirm_password
+    ) {
       await myDB.createUser(user);
-      res.status(201).redirect("/sign-in.html");
+      res
+        .status(201)
+        .json({ message: "Registration successful! Please sign-in" });
     } else {
-      if (user.email === checker.email) {
-        console.log("CHECKER EXISTS");
-        return res.status(200).send(checker);
-        // if the email is already registered
-        // res.json(JSON.stringify());
-        // console.log("RES", res);
-        // res.send({ user: checker });
-        // res.send({ checker: checker });
+      if (user.password !== user.confirm_password) {
+        res.json({ error: "Passwords not matching", err: "password" });
+      } else if (user.email === checker.email) {
+        res
+          .status(200)
+          .json({ error: "User email already exists", err: "email" });
       }
     }
   } catch (err) {

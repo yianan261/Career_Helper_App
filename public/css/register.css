@@ -191,7 +191,8 @@ label {
   padding: 8px 16px;
   width: 100%;
   min-height: 44px;
-  border: unset;
+  /* border: unset; */
+  border: 0.5px;
   border-radius: 4px;
   outline-color: rgb(84 105 212 / 0.5);
   background-color: rgb(255, 255, 255);
@@ -248,4 +249,23 @@ a.ssolink {
   font-size: small;
   padding-left: 2%;
   color: rgb(0, 31, 185);
+}
+
+.input_error {
+  border: 2px red;
+  animation: shake 0.3s ease-in-out;
+}
+@keyframes shake {
+  0%,
+  100% {
+    margin-left: 0px;
+  }
+  20%,
+  80% {
+    margin-left: -12px;
+  }
+  40%,
+  60% {
+    margin-left: 12px;
+  }
 }

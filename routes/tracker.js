@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getAllTracker, tracker} = require("../controllers/tracker");
+const { getAllTracker, tracker } = require("../controllers/tracker.js");
 
 router.route("/tracker.html").get(getAllTracker);
 router.route("/").post(tracker);

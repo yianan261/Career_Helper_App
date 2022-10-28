@@ -9,7 +9,8 @@ dotenv.config({ path: "./config/config.env" });
  */
 function MyMongoDB() {
   const myDB = {};
-  const url = process.env.MONGO_URI || "mongodb://localhost:27017";
+  // const url = process.env.MONGO_URI || "mongodb://localhost:27017";
+  const url = "mongodb://localhost:27017";
   const DB_NAME = "careerHelperMembers";
   const USER_COLLECTION = "user";
   const TRACKER_COLLECTION = "tracker";
@@ -66,7 +67,7 @@ function MyMongoDB() {
 
   // Amanda Au-Yeung
   // function to get tracker
-  myDB.createTracker = async (tracker) =>{
+  myDB.createTracker = async (tracker) => {
     let client;
     try {
       client = new MongoClient(url);

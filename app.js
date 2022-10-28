@@ -2,11 +2,11 @@ const express = require("express");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const path = require("path");
-const register = require("./routes/register");
-const jobs = require("./routes/jobs");
-const profile = require("./routes/profile");
-const signIn = require("./routes/sign-in");
-const tracker = require("./routes/tracker");
+const register = require("./routes/register.js");
+const jobs = require("./routes/jobs.js");
+const profile = require("./routes/profile.js");
+const signIn = require("./routes/sign-in.js");
+const tracker = require("./routes/tracker.js");
 const session = require("express-session");
 // const { mongoConnect } = require("./config/db");
 

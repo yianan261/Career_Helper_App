@@ -1,71 +1,82 @@
+// const { response } = require("express");
+
 //Yian Chen
 function Registration() {
   const form = document.getElementById("stripe-login2");
-  const submitBtn = document.getElementById("submitBtn");
-  const email = document.querySelector("[name='email']");
-  const data = {
-    name: "Yian",
-    email: "ychen151@nyit.edu",
-    password: "123",
-    "confirm-password": "123",
-    phone: "9165973444",
-  };
-  const isRegistered = async (_email) => {
+  const emailErr = document.querySelector("input[name='email']");
+  const passwordErr = document.querySelector("input[name='password']");
+
+  /**
+   * function that checks if user email has already been used and passwords are matching
+   * if everything is correct, creates user in the database
+   */
+  const isRegistered = async () => {
     try {
-      console.log("check1");
       // const user = await fetch("http://localhost:3000/register",{
       //   method: "POST",
       //   body: JSON.stringify(data)
       // });
-      const user = await fetch("/register");
-      console.log("check2");
-      console.log("check User", user);
+      const user = await fetch("./register", {
+        method: "POST",
+        body: new URLSearchParams(new FormData(form)),
+      });
       const res = await user.json();
-      console.log("check3 res", res);
-      console.log("_email", _email);
-      // if (_email === res.email) {
-      //   console.log("it works!");
-      //   alert("Email already registered!");
-      // } else {
-      //   alert("Registered Successfully!");
-      // }
+      console.log("res", res);
+
+      if (res.error) {
+        if (res.err === "email") {
+          emailErr.classList.add("input_error");
+          alert(`${res.error}, please try again with a different email`);
+        } else if (res.err === "password") {
+          passwordErr.classList.add("input_error");
+          alert(res.error);
+        }
+      } else {
+        alert(res.message);
+        window.location.replace("/sign-in");
+      }
     } catch (err) {
+      // TODO: create a show error function
       console.error(err);
     }
   };
+  //Need to set event listener to submit and preventDefault
   if (form) {
-    submitBtn.addEventListener("click", () => {
-      isRegistered(email);
-      // alert("Registration successful!");
+    form.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      isRegistered();
     });
   }
 
   //password verification for the registration page to check if passwords are matching
-  const val = {};
-  const pass = document.querySelector("#password");
-  const confirm = document.querySelector("#confirm");
-  const check = document.querySelector(".verify");
+  const checkPassword = () => {
+    const val = {};
+    const pass = document.querySelector("#password");
+    const confirm = document.querySelector("#confirm");
+    const check = document.querySelector(".verify");
 
-  pass.addEventListener("input", (evt) => {
-    let password = "";
-    password += evt.target.value;
-    if (evt.target.value === "") {
-      alert("Please enter a valid password");
-    }
+    pass.addEventListener("input", (evt) => {
+      let password = "";
+      password += evt.target.value;
+      if (evt.target.value === "") {
+        alert("Please enter a valid password");
+      }
 
-    val.password = password;
-    return val.password;
-  });
+      val.password = password;
+      return val.password;
+    });
 
-  confirm.addEventListener("input", (evt) => {
-    if (evt.target.value == val.password) {
-      check.classList.add("verified");
-      check.innerHTML = "match";
-    } else {
-      check.classList.add("verified");
-      check.innerHTML = "passwords not matching";
-    }
-  });
+    confirm.addEventListener("input", (evt) => {
+      if (evt.target.value == val.password) {
+        check.classList.add("verified");
+        check.innerHTML = "match";
+      } else {
+        check.classList.add("verified");
+        check.innerHTML = "passwords not matching";
+      }
+    });
+  };
+  checkPassword();
 }
 
 Registration();
