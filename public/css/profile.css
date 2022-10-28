@@ -2,12 +2,10 @@
   padding-top: 2%;
 }
 
-main {
-  padding-top: 2%;
-}
 .grid-container {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  /* grid-template-columns: 240px 1fr; */
+  grid-template-columns: 240px 82vw;
   grid-template-rows: 50px 1fr 50px;
   grid-template-areas:
     "sidenav header"
@@ -31,6 +29,7 @@ main {
 .main {
   grid-area: main;
   background-color: #ffffff;
+  padding-top: 2%;
 }
 
 .footer {
@@ -40,6 +39,8 @@ main {
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
+  height: 9vh;
+  margin-bottom: 0;
 }
 
 .footerCopyright {
@@ -161,7 +162,7 @@ main {
   grid-area: sd;
 }
 
-.wrapper {
+/* .wrapper {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   grid-auto-rows: minmax(100px, auto);
@@ -169,4 +170,4 @@ main {
     "hd hd hd hd   hd   hd   hd   hd   hd"
     "sd sd sd main main main main main main"
     "sd sd sd  ft  ft   ft   ft   ft   ft";
-}
+} */

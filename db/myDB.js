@@ -66,7 +66,7 @@ function MyMongoDB() {
 
   // Amanda Au-Yeung
   // function to get tracker
-  myDB.createTracker = async (tracker) =>{
+  myDB.createTracker = async (tracker) => {
     let client;
     try {
       client = new MongoClient(url);

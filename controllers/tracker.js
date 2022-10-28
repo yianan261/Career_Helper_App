@@ -1,4 +1,4 @@
-const myDB = require("../db/myDB");
+const myDB = require("../db/myDB.js");
 
 //Yian Chen
 const tracker = async (req, res) => {
