@@ -1,28 +1,55 @@
 //Yian Chen
 function EditProfile() {
-  const profileData = {};
+  // const profileData = {};
   // console.log("login.clientuser", Login.clientUser);
-
-  //temporary data
-  const mockUser = {
-    email: "ychen151@nyit.edu",
-    name: "Yian Chen",
-    phone: "9165973444",
-  };
 
   //function that changes placeholders of name,email,phone to user in session
   const showProfile = (data) => {
+    console.log("data", data);
     const name = document.querySelector("[name='name']");
     const email = document.querySelector("[name='email']");
     const phone = document.querySelector("[name='phone']");
+    const stateWish = document.querySelector("[name='stateWish']");
+    const careers = document.querySelector("[name='careers']");
+    const education = document.querySelector("[name='education']");
+    const skills = document.querySelector("[name='skills']");
+    const toWorkOn = document.querySelector("[name='toWorkOn']");
+    const country = document.querySelector("[name='country']");
+    const state = document.querySelector("[name='state']");
+    const experience = document.querySelector("[name='experience']");
     name.value = `${data.name}`;
     email.value = `${data.email}`;
     phone.value = `${data.phone}`;
+    stateWish.value = `${data.stateWish}`;
+    careers.value = `${data.careers}`;
+    education.value = `${data.education}`;
+    skills.value = `${data.skills}`;
+    toWorkOn.value = `${data.toWorkOn}`;
+    country.value = `${data.country}`;
+    state.value = `${data.state}`;
+    experience.value = `${data.experience}`;
   };
 
-  showProfile(mockUser);
   //check the login user in session
-  // const userInSession = () => {};
+  const userInSession = async () => {
+    try {
+      const res = await fetch("./profile/user/edit-profile");
+      // const res = await fetch("./profile/edit-profile", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(res),
+      // });
+      const profileData = await res.json();
+      console.log("here");
+      console.log("profileData.data.profile", profileData.data.profile);
+      if (profileData.data.profile) showProfile(profileData.data.profile);
+    } catch (err) {
+      alert(`There is an error ${err}`);
+      console.error(err);
+    }
+  };
 
   const renderProfile = (data) => {
     const test = document.querySelector("div.test");
@@ -64,5 +91,6 @@ function EditProfile() {
 
   //another function
   updateProfile();
+  userInSession();
 }
 EditProfile();
