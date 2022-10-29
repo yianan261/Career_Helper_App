@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-md-6 border-right">
                     <div class="p-3 py-5">
-                        <form id="profileForm" action="/edit-profile">
+                        <form id="profileForm" action="/profile/edit-profile" method="post">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="text-right">Profile Settings</h4>
                             </div>
@@ -109,8 +109,8 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-center experience"><span>Edit
-                                    Experience</span><button id="add">Add Experience</button></div><br>
+                            <div class=" experience"><span>Edit
+                                    Experience</span></div><br>
                             <div class="col-md-12 expDiv"><label for="experience" class="labels">Experience</label>
                                 <div id="experienceInput"><textarea name="experience" class="form-control"
                                         id="exampleFormControlTextarea" placeholder="experience" rows="3"
@@ -121,6 +121,7 @@
                                     type="submit">Save
                                     Settings</button></div>
                         </form>
+                        <div class="test"></div>
                     </div>
                 </div>
 
@@ -131,5 +132,9 @@
     </div>
 </body>
 <script src="/js/edit-profile.js"></script>
+<script type="module">
+    import Login from "./js/login.js"
+    Login()
+</script>
 
 </html>

@@ -1,7 +1,8 @@
-const express = require("express");
-const router = express.Router();
-const myDB = require("../db/myDB.js");
-// const { getAllTracker, tracker } = require("../controllers/tracker.js");
+
+import express from "express";
+let router = express.Router();
+import { getAllTracker, tracker } from "../controllers/tracker.js";
+
 
 // router.route("/tracker.html").get(getAllTracker);
 
@@ -25,4 +26,4 @@ router.get("/", async (req, res) => {
 //   res.status(200).redirect("/tracker.html");
 // });
 
-module.exports = router;
+export default router;

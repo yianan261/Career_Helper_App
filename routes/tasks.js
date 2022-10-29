@@ -1,11 +1,10 @@
-const express = require("express");
-const router = express.Router();
-
-const { getTasks, getTasksId } = require("../controllers/tasks.js");
+import express from "express";
+let router = express.Router();
+import { getTasks, getTasksId } from "../controllers/tasks.js";
 
 router.route("/").get(getTasks);
 router.route("/:id").get(getTasksId);
 
 // router.get("/", getTasks);
 
-module.exports = router;
+export default router;

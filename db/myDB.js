@@ -1,5 +1,5 @@
-const { MongoClient } = require("mongodb");
-const dotenv = require("dotenv");
+import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
 dotenv.config({ path: "./config/config.env" });
 
 //Yian Chen
@@ -31,6 +31,7 @@ function MyMongoDB() {
       client.close();
     }
   };
+
   //function that creates users
   myDB.createUser = async (user) => {
     let client;
@@ -47,6 +48,7 @@ function MyMongoDB() {
       client.close();
     }
   };
+
   //function that gets user info by email
   myDB.getUser = async (_email) => {
     let client;
@@ -54,27 +56,9 @@ function MyMongoDB() {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
+      const options = { projection: { password: 0, "confirm-password": 0 } };
       console.log(`getting user with email ID of ${_email}`);
-      const res = await usersCol.findOne({ email: _email });
-      console.log("Got user", res);
-      return res;
-    } finally {
-      console.log("Closing the connection");
-      client.close();
-    }
-  };
-  //function that creates user profile by email
-  myDB.createProfile = async (_email, _profile) => {
-    let client;
-    try {
-      client = new MongoClient(url);
-      const db = client.db(DB_NAME);
-      const usersCol = db.collection(USER_COLLECTION);
-      console.log(`getting user with email ID of ${_email}`);
-      const res = await usersCol.findOneAndUpdate(
-        { email: _email },
-        { $set: { profile: _profile } }
-      );
+      const res = await usersCol.findOne({ email: _email }, options);
       console.log("Got user", res);
       return res;
     } finally {
@@ -83,7 +67,27 @@ function MyMongoDB() {
     }
   };
 
-  //Amanda to do: create update profile function when user updates profile
+  //function that creates/updates user profile by email or updates when profile is changed
+  myDB.updateProfile = async (_email, _profile) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const usersCol = db.collection(USER_COLLECTION);
+      console.log(
+        `getting user with email ID of ${_email} and updating profile`
+      );
+      const res = await usersCol.updateOne(
+        { email: _email },
+        { $set: { profile: _profile } }
+      );
+      console.log("Profile updated DB 82", res);
+      return res;
+    } finally {
+      console.log("Closing the connection");
+      client.close();
+    }
+  };
 
   // Amanda Au-Yeung
   // function to get tracker
@@ -124,4 +128,4 @@ function MyMongoDB() {
   return myDB;
 }
 
-module.exports = MyMongoDB();
+export default MyMongoDB();

@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 // const jobs = require("../controllers/jobs");
 
@@ -7,4 +7,4 @@ router.get("/", (req, res) => {
   res.status(200).redirect("/jobs.html");
 });
 
-module.exports = router;
+export default router;
