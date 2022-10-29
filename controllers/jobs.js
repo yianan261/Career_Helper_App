@@ -1,8 +1,4 @@
-
-
 //Yian Chen
-const jobs = (req, res) => {
+export const jobs = (req, res) => {
   res.status(200);
 };
-
-module.exports = jobs;

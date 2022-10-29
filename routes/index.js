@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 //Yian Chen
@@ -7,4 +7,4 @@ const router = express.Router();
 //   res.status(200).sendFile(path.join(__dirname, "../", "views", "index.html"));
 // });
 
-module.exports = router;
+export default router;

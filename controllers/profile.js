@@ -1,8 +1,8 @@
-const myDB = require("../db/myDB.js");
+import myDB from "../db/myDB.js";
 
 //Yian Chen
 
-const updateProfile = async (req, res) => {
+export const updateProfile = async (req, res) => {
   const userProfile = req.body;
   try {
     const updateProfile = await myDB.updateProfile(
@@ -16,5 +16,3 @@ const updateProfile = async (req, res) => {
     res.status(400).send({ err: `There was an error ${err}` });
   }
 };
-
-module.exports = { updateProfile };
