@@ -1,10 +1,5 @@
-// const { response } = require("express");
-
 //Yian Chen
 function EditProfile() {
-  // const profileData = {};
-  // console.log("login.clientuser", Login.clientUser);
-
   //function that changes placeholders of name,email,phone to user in session
   const showProfile = (data) => {
     console.log("data", data);
@@ -20,35 +15,48 @@ function EditProfile() {
     const state = document.querySelector("[name='state']");
     const experience = document.querySelector("[name='experience']");
     const user_name = document.getElementById("userName");
-    _name.value = `${data.name}`;
-    email.value = `${data.email}`;
-    phone.value = `${data.phone}`;
-    stateWish.value = `${data.stateWish}`;
-    careers.value = `${data.careers}`;
-    education.value = `${data.education}`;
-    skills.value = `${data.skills}`;
-    toWorkOn.value = `${data.toWorkOn}`;
-    country.value = `${data.country}`;
-    state.value = `${data.state}`;
-    experience.value = `${data.experience}`;
+    const user_email = document.getElementById("userEmail");
+
+    _name.value = `${data.name}` || _name.placeholder;
+    email.value = `${data.email}` || email.placeholder;
+    phone.value = `${data.phone}` || phone.placeholder;
+    data.stateWish
+      ? (stateWish.value = `${data.stateWish}`)
+      : (stateWish.value = "");
+    data.careers ? (careers.value = `${data.careers}`) : (careers.value = "");
+    data.education
+      ? (education.value = `${data.education}`)
+      : (education.value = "");
+    data.skills ? (skills.value = `${data.skills}`) : (skills.value = "");
+    data.toWorkOn
+      ? (toWorkOn.value = `${data.toWorkOn}`)
+      : (toWorkOn.value = "");
+    data.country ? (country.value = `${data.country}`) : (country.value = "");
+    data.state ? (state.value = `${data.state}`) : (state.value = "");
+    data.experience
+      ? (experience.value = `${data.experience}`)
+      : (experience.value = "");
+
     user_name.innerHTML = `${data.name}`;
+    user_email.innerHTML = `${data.email}`;
   };
 
   //check the login user in session
   const userInSession = async () => {
     try {
- 
       const res = await fetch("./profile/user/edit-profile");
       const profileData = await res.json();
-      // console.log(profileData.data.profile);
-      showProfile(profileData.data.profile);
-        
+      if (profileData.data) {
+        console.log("profileData.data", profileData.data);
+        showProfile(profileData.data);
+      }
     } catch (err) {
       alert(`There is an error ${err}`);
       console.error(err);
     }
   };
 
+  //Just for testing, can get rid of this
   const renderProfile = (data) => {
     const test = document.querySelector("div.test");
     console.log("DATA", data);
@@ -92,4 +100,3 @@ function EditProfile() {
   userInSession();
 }
 EditProfile();
-

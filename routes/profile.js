@@ -13,8 +13,13 @@ router.get("/user/edit-profile", async (req, res) => {
   if (req.session.user) {
     const sessionUser = req.session.user;
     console.log("session User", sessionUser);
-    const user = await myDB.getUserProfile(sessionUser.user);
-    res.status(200).json({ data: user });
+    const user_info = await myDB.getUser(sessionUser.user);
+    if (!user_info.profile) {
+      return res.status(200).json({ data: user_info });
+    } else if (user_info.profile) {
+      const user = await myDB.getUserProfile(sessionUser.user);
+      res.status(200).json({ data: user.profile, msg: "successful" });
+    }
   } else {
     res.redirect("/sign-in");
   }
