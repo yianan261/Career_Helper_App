@@ -15,7 +15,7 @@ function Index() {
     console.log("render updates", updates);
     for (let u of updates) {
       const uDiv = document.createElement("div");
-      uDiv.className = "container text-center";
+      uDiv.className = "container-text-center";
       uDiv.innerHTML = `
         <div class="row row-cols-6">
         <div class="col">
@@ -43,31 +43,41 @@ function Index() {
     }
   }
 
+  // if session.user -- authenticate
+  
   function getTracker() {
     const form = document.getElementById("tracker-form");
     if (form) {
       form.addEventListener("submit", (evt) => {
         evt.preventDefault();
         console.log("getTracker frontend form: ", form);
-        fetchUpdates(form);
+        createTracker(form);
       });
     }
   }
 
-  async function fetchUpdates(form) {
+  async function createTracker(form) {
     try {
-      const res = await fetch("./tracker", {
+      await fetch("./tracker", {
         method: "POST",
         body: new URLSearchParams(new FormData(form)),
       });
-      const updates = await res.json();
-      console.log("test fetch update", res);
-      renderUpdates(updates);
+      renderUpdates(new FormData(form));
+      getAllTracker();
     } catch (err) {
       alert(`There is an error ${err}`);
     }
   }
 
+  async function getAllTracker(){
+    await fetch("./tracker")
+      .then(response => response.json())
+      .then((data) => {
+        renderUpdates(data.result);
+      });
+  }
+
+  getAllTracker();
   getTracker();
   return index;
 }

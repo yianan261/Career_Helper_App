@@ -1,30 +1,21 @@
 import express from "express";
 let router = express.Router();
 import myDB from "../db/myDB.js";
-import { tracker, getAllTracker } from "../controllers/tracker.js";
-
-
-// router.route("/").get(getAllTracker);
 
 router.post("/", async (req, res) => {
   console.log("params", req.body);
-  const new_company = await myDB.createTracker(req.body);
+  const user = req.session.user;
+  const new_company = await myDB.createTracker(req.body, user.user);
   console.log("INSERT BODY", new_company);
   res.json(new_company);
 });
 
 router.get("/", async (req, res) => {
   console.log("params of get all trackers", req.body);
-  const updates = await myDB.getAllTracker(req.body);
-  console.log("updated: ", updates);
-  res.send(updates);
-  // res.json(updates);
+  const user = req.session.user;
+  const result = await myDB.getAllTracker(user.user);
+  res.status(200).json({result});
 });
 
-// router.route("/").post(tracker);
-
-router.get("/", (req, res) => {
-  res.status(200).redirect("/tracker.html");
-});
 
 export default router;

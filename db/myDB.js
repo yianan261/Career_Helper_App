@@ -91,14 +91,17 @@ function MyMongoDB() {
 
   // Amanda Au-Yeung
   // function to get tracker
-  myDB.createTracker = async (tracker) => {
-    console.log("this is tracker in DB",tracker);
+  myDB.createTracker = async (_tracker, _email) => {
+    console.log("this is tracker in DB", _tracker);
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const trackerCol = db.collection(TRACKER_COLLECTION);
-      const res = await trackerCol.insertOne(tracker);
+      const res = await trackerCol.insertOne({
+        tracker: _tracker,
+        email: _email,
+      });
       console.log("Inserted!", res);
       return res;
     } finally {
@@ -109,15 +112,16 @@ function MyMongoDB() {
 
   // Amanda Au-Yeung
   //function that gets tracker info by companies
-  myDB.getAllTracker = async (companies = {}) => {
-    console.log("get all tracker compaines: ", companies);
+  myDB.getAllTracker = async (email) => {
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const trackerCol = db.collection(TRACKER_COLLECTION);
-      console.log(`getting user with companies of ${companies}`);
-      const res = await trackerCol.findOne({ company: companies });
+      const res = await trackerCol.find({ email: email }).toArray();
+
+      // filter by email
+
       console.log("Got companies", res);
       return res;
     } finally {
