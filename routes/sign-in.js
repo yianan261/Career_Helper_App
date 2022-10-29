@@ -1,32 +1,34 @@
 const express = require("express");
+const { authenticateUser, logOut } = require("../controllers/sign-in.js");
 const router = express.Router();
-// const authenticate = require("../controllers/sign-in.js");
 const myDB = require("../db/myDB.js");
 
 //Yian Chen
-router.post("/", async (req, res) => {
-  const user = req.body;
-  console.log("User", user);
-  //check if we password matches db password
-  if (await myDB.authenticate(user)) {
-    req.session.user = user.email;
-    res.redirect("/profile/?msg=authenticated");
-  } else {
-    res.redirect("/?msg=error_authenticating");
-    
-  }
+
+router.get("/getUser", (req, res) => {
+  console.log("get current User", req.session);
+  res.json({ isLoggedIn: !!req.session.user, user: req.session });
 });
+
+router.post("/", authenticateUser);
+
+//Test profile
+router.get("/getUserProfile", (req, res) => {
+  //if no one is logged in (no one in session)
+  if (!req.session.user) {
+    //return here so code doesn't keep running
+    return res.json({
+      isLoggedIn: false,
+      err: "Not authenticated, please log in",
+    });
+  }
+  return res.json(myDB.getUserProfile(req.session.user));
+});
+
+router.get("/logout", logOut);
 
 router.get("/", (req, res) => {
   res.status(200).redirect("/sign-in.html");
-});
-
-router.get("/?msg=error_authenticating", (req, res) => {
-  res.status(401).redirect("/sign-in.html");
-});
-
-router.get("/getUser", (req, res) => {
-  res.json({ user: req.session.user });
 });
 
 module.exports = router;
