@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/user/edit-profile", async (req, res) => {
+  console.log("req.session.user", req.session.user);
   if (req.session.user) {
     const sessionUser = req.session.user;
     console.log("session User", sessionUser);
