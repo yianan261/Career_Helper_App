@@ -110,6 +110,7 @@ function MyMongoDB() {
   // Amanda Au-Yeung
   //function that gets tracker info by companies
   myDB.getAllTracker = async (companies = {}) => {
+    console.log("get all tracker compaines: ", companies);
     let client;
     try {
       client = new MongoClient(url);
