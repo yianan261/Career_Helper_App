@@ -54,13 +54,17 @@ function Index() {
   }
 
   async function fetchUpdates(form) {
-    const res = await fetch("./tracker", {
-      method: "GET",
-      body: new URLSearchParams(new FormData(form)),
-    });
-    const updates = await res.json();
-    console.log("test fetch update", res);
-    renderUpdates(updates);
+    try {
+      const res = await fetch("./tracker", {
+        method: "POST",
+        body: new URLSearchParams(new FormData(form)),
+      });
+      const updates = await res.json();
+      console.log("test fetch update", res);
+      renderUpdates(updates);
+    } catch (err) {
+      alert(`There is an error ${err}`);
+    }
   }
 
   getTracker();
