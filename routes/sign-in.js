@@ -1,7 +1,7 @@
-const express = require("express");
-const { authenticateUser, logOut } = require("../controllers/sign-in.js");
+import express from "express";
+import { authenticateUser, logOut } from "../controllers/sign-in.js";
 const router = express.Router();
-const myDB = require("../db/myDB.js");
+import myDB from "../db/myDB.js";
 
 //Yian Chen
 
@@ -31,4 +31,4 @@ router.get("/", (req, res) => {
   res.status(200).redirect("/sign-in.html");
 });
 
-module.exports = router;
+export default router;

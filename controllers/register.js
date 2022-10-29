@@ -1,7 +1,7 @@
-const myDB = require("../db/myDB.js");
+import myDB from "../db/myDB.js";
 
 //Yian Chen
-const register = async (req, res) => {
+export const register = async (req, res) => {
   let user;
   let checker;
   try {
@@ -31,7 +31,6 @@ const register = async (req, res) => {
   }
 };
 
-const userSession = (req, res) => {
+export const userSession = (req, res) => {
   res.json({ user: req.session.user });
 };
-module.exports = { register, userSession };

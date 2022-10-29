@@ -1,5 +1,5 @@
-const { MongoClient } = require("mongodb");
-const dotenv = require("dotenv");
+import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
 dotenv.config({ path: "./config/config.env" });
 
 //Yian Chen
@@ -128,4 +128,4 @@ function MyMongoDB() {
   return myDB;
 }
 
-module.exports = MyMongoDB();
+export default MyMongoDB();

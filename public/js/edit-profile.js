@@ -1,8 +1,8 @@
-// const Login = require("./js/login");
-
 //Yian Chen
 function EditProfile() {
   const profileData = {};
+  // console.log("login.clientuser", Login.clientUser);
+
   //temporary data
   const mockUser = {
     email: "ychen151@nyit.edu",

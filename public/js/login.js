@@ -122,4 +122,3 @@ function Login() {
 
 Login();
 
-module.exports = Login;
