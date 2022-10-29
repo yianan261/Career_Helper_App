@@ -9,7 +9,7 @@ dotenv.config({ path: "./config/config.env" });
  */
 function MyMongoDB() {
   const myDB = {};
-  const url = process.env.MONGO_URI || "mongodb://localhost:27017";
+  const url = "mongodb://localhost:27017" || process.env.MONGO_URI;
   const DB_NAME = "careerHelperMembers";
   const USER_COLLECTION = "user";
   const TRACKER_COLLECTION = "tracker";
@@ -67,6 +67,7 @@ function MyMongoDB() {
   // Amanda Au-Yeung
   // function to get tracker
   myDB.createTracker = async (tracker) => {
+    console.log("this is tracker in DB",tracker);
     let client;
     try {
       client = new MongoClient(url);
@@ -83,7 +84,7 @@ function MyMongoDB() {
 
   // Amanda Au-Yeung
   //function that gets tracker info by companies
-  myDB.getAllTracker = async (companies) => {
+  myDB.getAllTracker = async (companies = {}) => {
     let client;
     try {
       client = new MongoClient(url);
