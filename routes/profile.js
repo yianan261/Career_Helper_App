@@ -1,5 +1,5 @@
-const express = require("express");
-const { updateProfile } = require("../controllers/profile.js");
+import express from "express";
+import { updateProfile } from "../controllers/profile.js";
 const router = express.Router();
 //Yian Chen
 router.get("/", (req, res) => {
@@ -12,4 +12,4 @@ router.get("/edit-profile", (req, res) => {
 
 router.post("/edit-profile", updateProfile);
 
-module.exports = router;
+export default router;

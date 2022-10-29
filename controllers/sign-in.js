@@ -1,8 +1,8 @@
-const myDB = require("../db/myDB.js");
+import myDB from "../db/myDB.js";
 
 //Yian Chen
 //authenticate user function, checks in DB and checks user session
-const authenticateUser = async (req, res) => {
+export const authenticateUser = async (req, res) => {
   const user = req.body;
   const checkEmail = await myDB.authenticate(user);
   if (checkEmail) {
@@ -19,10 +19,8 @@ const authenticateUser = async (req, res) => {
 };
 
 //function that logs out user
-const logOut = (req, res) => {
+export const logOut = (req, res) => {
   req.session.user = null;
   console.log("session logout", req.session.user);
   res.json({ isLoggedIn: false, msg: "Logged out successfully" });
 };
-
-module.exports = { authenticateUser, logOut };

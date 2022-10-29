@@ -1,14 +1,18 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const bodyParser = require("body-parser");
-const path = require("path");
-const register = require("./routes/register.js");
-const jobs = require("./routes/jobs.js");
-const profile = require("./routes/profile.js");
-const signIn = require("./routes/sign-in.js");
-const tracker = require("./routes/tracker.js");
-const session = require("express-session");
-// const { mongoConnect } = require("./config/db");
+import express from "express";
+import dotenv from "dotenv";
+import bodyParser from "body-parser";
+import path from "path";
+import register from "./routes/register.js";
+import jobs from "./routes/jobs.js";
+import profile from "./routes/profile.js";
+import signIn from "./routes/sign-in.js";
+import tracker from "./routes/tracker.js";
+import session from "express-session";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 //Yian Chen
 dotenv.config({ path: "./config/config.env" });
