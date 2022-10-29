@@ -1,7 +1,7 @@
 import express from "express";
 import { authenticateUser, logOut } from "../controllers/sign-in.js";
 const router = express.Router();
-import myDB from "../db/myDB.js";
+
 
 //Yian Chen
 
@@ -13,7 +13,7 @@ router.get("/getUser", (req, res) => {
 router.post("/", authenticateUser);
 
 //Test profile
-router.get("/getUserProfile", (req, res) => {
+router.get("/getUserProfile", async (req, res) => {
   //if no one is logged in (no one in session)
   if (!req.session.user) {
     //return here so code doesn't keep running
@@ -21,8 +21,9 @@ router.get("/getUserProfile", (req, res) => {
       isLoggedIn: false,
       err: "Not authenticated, please log in",
     });
+  } else {
+    return res.json({ isLoggedIn: true });
   }
-  return res.json(myDB.getUserProfile(req.session.user));
 });
 
 router.get("/logout", logOut);

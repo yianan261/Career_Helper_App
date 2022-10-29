@@ -23,8 +23,7 @@ function MyMongoDB() {
       const usersCol = db.collection(USER_COLLECTION);
       console.log("searching for", user);
       const res = await usersCol.findOne({ email: user.email });
-      console.log("res DB26", res, res.password === user.password);
-      if (res.password === user.password) return true;
+      if (res && res.password === user.password) return true;
       return false;
     } finally {
       console.log("closing the connection");
@@ -82,6 +81,28 @@ function MyMongoDB() {
         { $set: { profile: _profile } }
       );
       console.log("Profile updated DB 82", res);
+      return res;
+    } finally {
+      console.log("Closing the connection");
+      client.close();
+    }
+  };
+
+  //function that gets user profile
+  myDB.getUserProfile = async (_email) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const usersCol = db.collection(USER_COLLECTION);
+      const options = {
+        projection: {
+          profile: 1,
+        },
+      };
+      console.log(`getting user with email ID of ${_email}`);
+      const res = await usersCol.findOne({ email: _email }, options);
+      console.log("Got user profile", res);
       return res;
     } finally {
       console.log("Closing the connection");
