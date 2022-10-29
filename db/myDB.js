@@ -63,6 +63,27 @@ function MyMongoDB() {
       client.close();
     }
   };
+  //function that creates user profile by email
+  myDB.createProfile = async (_email, _profile) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const usersCol = db.collection(USER_COLLECTION);
+      console.log(`getting user with email ID of ${_email}`);
+      const res = await usersCol.findOneAndUpdate(
+        { email: _email },
+        { $set: { profile: _profile } }
+      );
+      console.log("Got user", res);
+      return res;
+    } finally {
+      console.log("Closing the connection");
+      client.close();
+    }
+  };
+
+  //Amanda to do: create update profile function when user updates profile
 
   // Amanda Au-Yeung
   // function to get tracker

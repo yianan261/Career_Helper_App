@@ -50,7 +50,8 @@
                     </li>
                 </ul>
             </div>
-            <span><a href="/sign-in" id="logout">Log out &nbsp<i class="fa-solid fa-right-from-bracket"></i></a></span>
+            <span><a href="/sign-in/logout" id="logout">Log out &nbsp<i
+                        class="fa-solid fa-right-from-bracket"></i></a></span>
 
     </nav>
 
@@ -75,6 +76,11 @@
 
 
         <main class="main">
+
+            <!-- <div class="alert alert-info alert-dismissible fade show" role="alert" id="msg">
+                <span id="msgContent"></span>
+            </div> -->
+
             <div class="main-header__heading greet">Hello User</div>
 
             <div class="main-overview">
@@ -112,6 +118,15 @@
     <!-- </div> -->
 </body>
 
-<script src="/js/myProfile.js"></script>
+<script src="/js/myProfile.js">
+
+</script>
+<!--need the login js to implement logout when user clicks on "logout" link-->
+<script src="./js/login.js"></script>
+<!-- <script type="module">
+    import clientUser from "./js/login.js";
+    clientUser.setupLogin();
+    clientUser.setupLogout();
+</script> -->
 
 </html>
