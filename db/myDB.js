@@ -23,7 +23,7 @@ function MyMongoDB() {
       const usersCol = db.collection(USER_COLLECTION);
       console.log("searching for", user);
       const res = await usersCol.findOne({ email: user.email });
-      console.log("res", res, res.password === user.password);
+      console.log("res DB26", res, res.password === user.password);
       if (res.password === user.password) return true;
       return false;
     } finally {

@@ -38,7 +38,7 @@ function Login() {
   // clientUser.getCurrUser = async () => {
   //   let res;
   //   try {
-  //     res = await fetch("./getUser");
+  //     res = await fetch("./sign-in/getUser");
   //     const resUser = await res.json();
   //     if (resUser.isLoggedIn) {
   //       //if user is logged in render profile and tracker
