@@ -8,7 +8,7 @@ const authenticateUser = async (req, res) => {
   if (checkEmail) {
     //if authenticated, user in session
     req.session.user = { user: user.email };
-    res.status(200).json({ isLoggedIn: true, err: null });
+    res.status(200).json({ isLoggedIn: true, err: null, user: user.email });
   } else {
     req.session.user = null;
     res.status(403).json({
