@@ -40,10 +40,10 @@
                         <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/profile" class="nav-link user-page">My Profile</a>
+                        <a href="/sign-in/getUserProfile" class="nav-link user-page" id="profile">My Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/tracker" class="nav-link user-page">My Tracker</a>
+                        <a href="/sign-in/getUserProfile" class="nav-link user-page" id="tracker">My Tracker</a>
                     </li>
                     <li class="nav-item">
                         <a href="/jobs" class="nav-link">Jobs</a>
@@ -67,6 +67,8 @@
 </body>
 
 <script src="/js/jobs.js"></script>
+<!--This script checks if user is logged in or not before being able to click on "my profile" and "my tracker"-->
+<script src="./js/index.js"></script>
 <script src="/node_modules/d3-dsv/dist/d3-dsv.min.js"></script>
 
 </html>
