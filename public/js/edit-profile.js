@@ -1,41 +1,68 @@
+// const Login = require("./js/login");
+
 //Yian Chen
 function EditProfile() {
-  const addExperience = document.getElementById("add");
-  const experienceDiv = document.querySelector(".expDiv");
-  /**
-   * function that allows users to add/delete experience in profile
-   */
-  const addOne = () => {
-    const newInput = document.createElement("textarea");
-    const newDiv = document.createElement("textarea");
-    newDiv.classList.add("experienceInput");
-    newInput.classList.add("form-control");
-    newInput.rows = "3";
-    //   newInput.classList.add("new-form");
-    newInput.placeholder = "experience";
-    const deleteBtn = document.createElement("button");
-
-    deleteBtn.innerHTML = "-";
-    deleteBtn.style = "margin-left: 5px; display: inline";
-    deleteBtn.className = "btn btn-primary";
-    deleteBtn.classList.add("delBtn");
-
-    experienceDiv.appendChild(newInput);
-    experienceDiv.appendChild(deleteBtn);
-
-    const delBtn = document.querySelector(".delBtn");
-    delBtn.addEventListener("click", () => {
-      if (delBtn) {
-        experienceDiv.removeChild(newInput);
-        experienceDiv.removeChild(deleteBtn);
-      }
-    });
+  const profileData = {};
+  //temporary data
+  const mockUser = {
+    email: "ychen151@nyit.edu",
+    name: "Yian Chen",
+    phone: "9165973444",
   };
 
-  addExperience.addEventListener("click", () => {
-    addOne();
-  });
+  //function that changes placeholders of name,email,phone to user in session
+  const showProfile = (data) => {
+    const name = document.querySelector("[name='name']");
+    const email = document.querySelector("[name='email']");
+    const phone = document.querySelector("[name='phone']");
+    name.value = `${data.name}`;
+    email.value = `${data.email}`;
+    phone.value = `${data.phone}`;
+  };
+
+  showProfile(mockUser);
+  //check the login user in session
+  // const userInSession = () => {};
+
+  const renderProfile = (data) => {
+    const test = document.querySelector("div.test");
+    console.log("DATA", data);
+    test.innerHTML = `
+    <ul><li> ${data.careers} </li> <li> ${data.country} </li> </ul>
+    `;
+  };
+
+  //function that updates profile when user fills out and submits profile form
+  const updateProfile = () => {
+    let res;
+    const profileForm = document.getElementById("profileForm");
+    if (profileForm) {
+      profileForm.addEventListener("submit", (evt) => {
+        evt.preventDefault();
+        console.log("submitted profile form line 33 JS");
+        update(profileForm);
+      });
+    }
+    //update function
+    const update = async (_form) => {
+      try {
+        res = await fetch("./profile/edit-profile", {
+          method: "POST",
+          body: new URLSearchParams(new FormData(_form)),
+        });
+        console.log("checking profile res line 21 JS", res.body);
+        const profileRes = await res.json();
+        console.log("checking edit profile JS line 23 ", profileRes);
+        renderProfile(profileRes.data);
+        alert(profileRes.message);
+      } catch (err) {
+        alert(`There is an error ${err}`);
+        console.error(err);
+      }
+    };
+  };
+
+  //another function
+  updateProfile();
 }
 EditProfile();
-
-
