@@ -89,6 +89,28 @@ function MyMongoDB() {
     }
   };
 
+  //function that gets user profile
+  myDB.getUserProfile = async (_email) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const usersCol = db.collection(USER_COLLECTION);
+      const options = {
+        projection: {
+          profile: 1,
+        },
+      };
+      console.log(`getting user with email ID of ${_email}`);
+      const res = await usersCol.findOne({ email: _email }, options);
+      console.log("Got user profile", res);
+      return res;
+    } finally {
+      console.log("Closing the connection");
+      client.close();
+    }
+  };
+
   // Amanda Au-Yeung
   // function to get tracker
   myDB.createTracker = async (tracker) => {
