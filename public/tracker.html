@@ -40,17 +40,17 @@
                         <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/profile" class="nav-link user-page">My Profile</a>
+                        <a href="/profile.html" class="nav-link user-page">My Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/tracker" class="nav-link user-page">My Tracker</a>
+                        <a href="/tracker.html" class="nav-link user-page">My Tracker</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/jobs" class="nav-link">Jobs</a>
+                        <a href="/jobs.html" class="nav-link">Jobs</a>
                     </li>
                 </ul>
             </div>
-            <span><a href="/sign-in" id="logout">Log out &nbsp<i class="fa-solid fa-right-from-bracket"></i></a></span>
+            <span><a href="/sign-in.html" id="logout">Log out &nbsp<i class="fa-solid fa-right-from-bracket"></i></a></span>
 
     </nav>
     <div class="container-xl mainDiv">
@@ -76,8 +76,10 @@
               </div>
             </div>
           </div>
-          <form action="/tracker" method="post">
-          <div class="container text-center" id="tracker-content">
+          <div id="updates"> Loading...
+          </div>
+          <form action="/tracker" method="post" id="tracker-form">
+          <div class="container-text-center" id="tracker-content">
             <div class="row row-cols-6">
                 <div class="col">
                 <button type="submit" value="add">+</button>
@@ -96,7 +98,7 @@
               </div>
               <div class="col">
                 <select id="status" name="status">
-                    <option value="default">Not Applied</option>
+                    <option value="---">Not Applied</option>
                     <option value="applied">Applied</option>
                     <option value="interview">Interview</option>
                     <option value="offer">Offer</option>
