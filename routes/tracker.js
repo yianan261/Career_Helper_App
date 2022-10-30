@@ -15,10 +15,10 @@ router.post("/", async (req, res) => {
       // if (!user_email.profile) {
       //   return res.status(200).json({ data: user_email });
       // } else {
-      const new_company = await myDB.createTracker(req.body, user_email.user);
+      const new_company = await myDB.createTracker(req.body, user_email.email);
       console.log("post new_company: ", new_company);
       // return res.json({ new_company: new_company, email: user_email.user });
-      
+      res.status(200).send("success");
       // }
     } else {
       res.redirect("/sign-in");
@@ -36,18 +36,19 @@ router.get("/", (req, res) => {
   res.status(200).redirect("/tracker.html");
 });
 
-router.get("/", async (req, res) => {
+router.get("/get-tracker", async (req, res) => {
   console.log("params get session user", req.session.user);
   if (req.session.user) {
     const userSession = req.session.user;
     console.log("get -- userSession", userSession);
     const user_email = await myDB.getUser(userSession.user);
-    if (!user_email.profile) {
-      return res.status(200).json({ data: user_email });
-    } else {
-      const new_company = await myDB.getAllTracker(user_email.user);
-      res.status(200).json({ companies: new_company, email: user_email.user });
-    }
+    // if (!user_email.profile) {
+    // return res.status(200).json({ data: user_email });
+    // } else {
+    const new_company = await myDB.getAllTracker(user_email.email);
+    console.log("get user email,", new_company);
+    res.status(200).send({ companies: new_company, email: user_email.email });
+    // }
   } else {
     res.redirect("/sign-in");
   }
