@@ -140,10 +140,7 @@ function MyMongoDB() {
       const db = client.db(DB_NAME);
       const trackerCol = db.collection(TRACKER_COLLECTION);
       const res = await trackerCol.find({ email: email }).toArray();
-
-      // filter by email
-
-      console.log("Got companies", res);
+      // console.log("Got companies", res);
       return res;
     } finally {
       console.log("Closing the connection");
