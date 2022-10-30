@@ -55,11 +55,14 @@
     </nav>
     <div class="container-xl mainDiv">
         <main>
-            <h1>Open Engineering Jobs</h1>
+            <div class="header">
+                <h1>Explore career opportunities</h1>
+            </div>
+            <hr>
             <section>
-                <div id="jobPosts">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis laudantium libero
-                    provident magni molestiae, tempora odio quidem tenetur pariatur vel velit veritatis hic molestias.
-                    Fuga incidunt nihil harum architecto est?</div>
+                <div class="cards">
+
+                    <div class="row justify-content-evenly gx-3" id="jobPosts"></div>
 
             </section>
         </main>
@@ -69,6 +72,6 @@
 <script src="/js/jobs.js"></script>
 <!--This script checks if user is logged in or not before being able to click on "my profile" and "my tracker"-->
 <script src="./js/index.js"></script>
-<script src="/node_modules/d3-dsv/dist/d3-dsv.min.js"></script>
+
 
 </html>

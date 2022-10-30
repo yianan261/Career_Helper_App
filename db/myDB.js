@@ -13,6 +13,8 @@ function MyMongoDB() {
   const DB_NAME = "careerHelperMembers";
   const USER_COLLECTION = "user";
   const TRACKER_COLLECTION = "tracker";
+  const JOB_COLLECTION = "jobs";
+  const PAGE_SIZE = 18;
 
   //function that authenticates users
   myDB.authenticate = async (user) => {
@@ -55,7 +57,9 @@ function MyMongoDB() {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      const options = { projection: { password: 0, "confirm-password": 0 } };
+      const options = {
+        projection: { password: 0, "confirm-password": 0, confirm_password: 0 },
+      };
       console.log(`getting user with email ID of ${_email}`);
       const res = await usersCol.findOne({ email: _email }, options);
       console.log("Got user", res);
@@ -106,6 +110,23 @@ function MyMongoDB() {
       return res;
     } finally {
       console.log("Closing the connection");
+      client.close();
+    }
+  };
+
+  //function that gets the job posts
+  myDB.getPosts = async function (query = {}, page = 0) {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const postsCol = client.db(DB_NAME).collection(JOB_COLLECTION);
+      return await postsCol
+        .find(query)
+        .skip(PAGE_SIZE * page)
+        .limit(PAGE_SIZE)
+        .toArray();
+    } finally {
+      console.log("Closing db connection");
       client.close();
     }
   };
