@@ -65,7 +65,8 @@ function Index() {
   }
 
   async function getAllTracker(form) {
-    var responseClone;
+    let responseClone;
+    console.log("test123");
     await fetch("./tracker", {
       method: "GET",
       body: new URLSearchParams(new FormData(form)),

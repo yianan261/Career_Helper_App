@@ -3,21 +3,23 @@ import express from "express";
 let router = express.Router();
 import myDB from "../db/myDB.js";
 
-
 router.post("/", async (req, res) => {
   console.log("test post for createTracker in router: ", req.body);
   try {
+    console.log("post req.session.user", req.session.user);
     if (req.session.user) {
       console.log("post create tracker: ", req.session.user);
       const userSession = req.session.user;
       const user_email = await myDB.getUser(userSession.user);
-      if (!user_email.profile) {
-        return res.status(200).json({ data: user_email });
-      } else {
-        const new_company = await myDB.createTracker(req.body, user_email.user);
-        console.log("new_company: ", new_company);
-        res.json({ new_company: new_company, email: user_email.user });
-      }
+      console.log("post router tracker user_email: ", user_email);
+      // if (!user_email.profile) {
+      //   return res.status(200).json({ data: user_email });
+      // } else {
+      const new_company = await myDB.createTracker(req.body, user_email.user);
+      console.log("post new_company: ", new_company);
+      // return res.json({ new_company: new_company, email: user_email.user });
+      
+      // }
     } else {
       res.redirect("/sign-in");
     }
