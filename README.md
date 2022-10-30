@@ -1,4 +1,4 @@
-# Career_Helper_App
+# Career Helper App
 
 ## Authors
 - Yian Chen
