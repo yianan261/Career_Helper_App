@@ -1,13 +1,13 @@
 .mainDiv {
   padding-top: 6%;
-  background-color: rgb(236, 246, 255);
+  background-color: rgb(233, 240, 252);
 }
 
 .header {
   padding-top: 1%;
   padding-bottom: 2%;
   text-align: center;
-  color: rgb(0, 0, 95);
+  color: rgb(41, 1, 109);
 }
 
 .card:hover {
@@ -16,9 +16,18 @@
 }
 
 .card-body {
-  height: 40vh;
+  height: 45vh;
 }
 
 #jobPosts {
   display: flex;
+}
+
+.inputDiv {
+  padding-top: 2%;
+  margin: auto;
+}
+
+#search-addon:hover {
+  cursor: pointer;
 }

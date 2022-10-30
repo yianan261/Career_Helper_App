@@ -8,14 +8,17 @@ function JobClient() {
     jobPosts.innerHTML = "";
     for (let p of posts) {
       const pDiv = document.createElement("div");
-      pDiv.className = "card col-xs-3 col-sm-3 ";
+      pDiv.className = "card col-xs-3 col-sm-3";
       pDiv.style = "margin-bottom:2%;margin-left:2px";
       pDiv.innerHTML = `<div class="card-body">
       <div class="card-title" style="text-align:center; padding-bottom:2% ; padding-top:5%; font-size:large"><label>Company Name: <output>${p.company_name}</output></label></div>
       <div class="position" style="text-align:center; padding-bottom:2%"><label>Job Position: <output>${p.job_position}</output></label></div>
       <div style="text-align:center; padding-bottom:2%"><label>City: <output>${p.city}</output></label></div>
       <div style="text-align:center; padding-bottom:2%"><label>State: <output>${p.state}</output></label></div>
-      <div style="text-align:center; padding-bottom:2%"><label><a href=${p.job_url}>Apply Now </a></label></div>      
+      <hr> 
+      <div style="width:100%"> <div class="text"style="font-weight:light;color:#808080">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, laborum? Impedit doloremque at, nisi  </div>
+      <div style="text-align:right;overflow:hidden; padding-bottom:2%"><label><a href=${p.job_url}>View More </a></label></div>   </div>
+    
     </div>`;
 
       jobPosts.appendChild(pDiv);

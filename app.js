@@ -25,7 +25,7 @@ app.use(
     secret: "key that will sign cookie",
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));

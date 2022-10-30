@@ -140,6 +140,7 @@
 .editProf {
   text-decoration: none;
   color: inherit;
+  --bs-tooltip-bg: var(--bs-primary);
 }
 
 .greet {
@@ -162,12 +163,3 @@
   grid-area: sd;
 }
 
-/* .wrapper {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-auto-rows: minmax(100px, auto);
-  grid-template-areas:
-    "hd hd hd hd   hd   hd   hd   hd   hd"
-    "sd sd sd main main main main main main"
-    "sd sd sd  ft  ft   ft   ft   ft   ft";
-} */
