@@ -36,7 +36,7 @@ function Index() {
       updatesDiv.appendChild(uDiv);
     }
   }
-  
+
   function getTracker() {
     const form = document.getElementById("tracker-form");
     if (form) {
@@ -48,28 +48,61 @@ function Index() {
     }
   }
 
-  // if session.user -- authenticate
-  
   async function createTracker(form) {
     try {
-      await fetch("./tracker", {
+      const res = await fetch("./tracker", {
         method: "POST",
         body: new URLSearchParams(new FormData(form)),
       });
-      renderUpdates(new FormData(form));
+      console.log("fetch createTracker test -- res: ", res);
+      const user_data = await res.json();
+      console.log("check user_data.new_company: ", user_data.new_company);
+      renderUpdates(user_data.new_company);
       getAllTracker();
     } catch (err) {
       alert(`There is an error ${err}`);
     }
   }
 
-  async function getAllTracker(){
-    await fetch("./tracker")
-      .then(response => response.json())
-      .then((data) => {
-        renderUpdates(data.result);
-      });
+  async function getAllTracker(form) {
+    var responseClone;
+    await fetch("./tracker", {
+      method: "GET",
+      body: new URLSearchParams(new FormData(form)),
+    })
+      .then((response) => {
+        console.log(response);
+        responseClone = response.clone();
+        response.json();
+      })
+      .then(
+        (data) => {
+          renderUpdates(data.result);
+        },
+        function (rejectionReason) {
+          console.log(
+            "Error parsing JSON from response: ",
+            rejectionReason,
+            responseClone
+          );
+        }
+      );
   }
+
+  // async function getAllTracker() {
+  //   var responseClone;
+  //   await fetch("./tracker")
+  //     .then((response) => {
+  //       responseClone = response.clone();
+  //       response.json();
+  //     }
+  //     )
+  //     .then((data) => {
+  //       renderUpdates(data.result);
+  //     }, function (rejectionReason){
+  //       console.log("Error parsing JSON from response: ", rejectionReason, responseClone);
+  //     });
+  // }
 
   getAllTracker();
   getTracker();
