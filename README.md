@@ -1,8 +1,8 @@
 # Career_Helper_App
 
 ## Author
-Yian Chen
-So Man Amanda Au-Yeung
+- Yian Chen
+- So Man Amanda Au-Yeung
 
 ## Project Objective
 A career helper app built with Node.js, Express.js, MongoDB, HTML, CSS, Javascript
