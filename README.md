@@ -1,6 +1,6 @@
 # Career_Helper_App
 
-## Author
+## Authors
 - Yian Chen
 - So Man Amanda Au-Yeung
 
