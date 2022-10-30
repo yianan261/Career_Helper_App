@@ -14,39 +14,6 @@ function Login() {
     window.location.replace(`/${page}`);
   };
 
-  // //function that renders user profile when user is logged in
-  // clientUser.renderProfile = (user_profile, _currUser) => {
-  //   console.log(`RENDERS PROFILE of curr user ${user_profile} of ${_currUser}`);
-  // };
-
-  // //function that renders user tracker when user is logged in
-  // const renderTracker = (user_tracker)=>{
-
-  // }
-
-  // //function that checks if user is logged in, in order to call getProfile and getTracker
-  // clientUser.getCurrUser = async () => {
-  //   let res;
-  //   try {
-  //     res = await fetch("./sign-in/getUser");
-  //     const resUser = await res.json();
-  //     if (resUser.isLoggedIn) {
-  //       //if user is logged in render profile and tracker
-  //       currUser = resUser.user;
-  //       clientUser.getProfile();
-  //       //getTracker() -> amanda implement
-  //     }
-  //     //else if not logged in, redirect to logged in
-  //     else {
-  //       currUser = null;
-  //       redirect("sign-in");
-  //     }
-  //   } catch (err) {
-  //     alert(`There is an error, ${err}`);
-  //     console.error(err);
-  //   }
-  // };
-
   //function that listens to form and on submit authenticates user login
   clientUser.setupLogin = () => {
     console.log("setup login");
@@ -121,4 +88,3 @@ function Login() {
 }
 
 Login();
-

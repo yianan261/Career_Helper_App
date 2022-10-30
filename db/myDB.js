@@ -131,6 +131,29 @@ function MyMongoDB() {
     }
   };
 
+  //function that queries job posts users search for
+  myDB.findJobPosts = async function (word) {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const postsCol = client.db(DB_NAME).collection(JOB_COLLECTION);
+      return await postsCol
+        .find({
+          $or: [
+            { company_name: { $regex: word, $options: "i" } },
+            { job_position: { $regex: word, $options: "i" } },
+            { city: { $regex: word, $options: "i" } },
+            { state: { $regex: word, $options: "i" } },
+          ],
+        })
+        .limit(PAGE_SIZE)
+        .toArray();
+    } finally {
+      console.log("Closing db connection");
+      client.close();
+    }
+  };
+
   // Amanda Au-Yeung
   // function to get tracker
   myDB.createTracker = async (tracker) => {
