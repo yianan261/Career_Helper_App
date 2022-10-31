@@ -13,7 +13,6 @@ body {
 }
 nav {
   padding-bottom: 10%;
-  /* background: #532cff; */
 }
 
 .container {
@@ -207,5 +206,3 @@ aboutDiv {
 .right {
   padding-right: 5%;
 }
-
-

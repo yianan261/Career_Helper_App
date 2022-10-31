@@ -49,19 +49,3 @@ app.listen(
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 );
 
-// mongoConnect(() => {
-//   console.log("client");
-// });
-
-// //connecting mongoDB
-// const client = new MongoClient(process.env.MONGO_URI);
-// const run = async () => {
-//   try {
-//     await client.connect();
-//     console.log("connected success");
-//   } finally {
-//     await client.close();
-//   }
-// };
-
-// run().catch(console.dir);

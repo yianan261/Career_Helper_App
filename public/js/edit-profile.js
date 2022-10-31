@@ -47,22 +47,12 @@ function EditProfile() {
       const res = await fetch("./profile/user/edit-profile");
       const profileData = await res.json();
       if (profileData.data) {
-        console.log("profileData.data", profileData.data);
         showProfile(profileData.data);
       }
     } catch (err) {
       alert(`There is an error ${err}`);
       console.error(err);
     }
-  };
-
-  //Just for testing, can get rid of this
-  const renderProfile = (data) => {
-    const test = document.querySelector("div.test");
-    console.log("DATA", data);
-    test.innerHTML = `
-    <ul><li> ${data.careers} </li> <li> ${data.country} </li> </ul>
-    `;
   };
 
   //function that updates profile when user fills out and submits profile form
@@ -72,7 +62,6 @@ function EditProfile() {
     if (profileForm) {
       profileForm.addEventListener("submit", (evt) => {
         evt.preventDefault();
-        console.log("submitted profile form line 33 JS");
         update(profileForm);
       });
     }
@@ -83,10 +72,7 @@ function EditProfile() {
           method: "POST",
           body: new URLSearchParams(new FormData(_form)),
         });
-        console.log("checking profile res line 21 JS", res.body);
         const profileRes = await res.json();
-        console.log("checking edit profile JS line 23 ", profileRes);
-        renderProfile(profileRes.data);
         alert(profileRes.message);
       } catch (err) {
         alert(`There is an error ${err}`);
@@ -95,7 +81,6 @@ function EditProfile() {
     };
   };
 
-  //another function
   updateProfile();
   userInSession();
 }
