@@ -5,37 +5,51 @@ function Index() {
   const updatesDiv = document.querySelector("div#updates");
   let form = document.getElementById("tracker-form");
 
-  function renderUpdates(updates) {
+  function renderAdded(updates) {
     updatesDiv.innerHTML = "";
-    console.log("render updates", updates);
-    for (let u of updates["companies"]) {
-      u = u.tracker;
-      const uDiv = document.createElement("div");
+    console.log("render added", updates);
+    for (let objects of updates["companies"]) {
+      console.log("object, object id", objects, objects._id);
+      let u = objects.tracker;
+      let uDiv = document.createElement("div");
+      let uEdit = document.createElement("button");
+      uEdit.type = "button";
+      uEdit.className = "editButton";
+      const uDel = document.createElement("button");
+      uDel.type = "submit";
       uDiv.className = "container-text-center";
       uDiv.innerHTML = `
+      <form id=${objects._id}>
         <div class="row row-cols-6">
-        <div class="col">
-        <label>✓</label>
+          <div class="col">
+          <label><output>${u.company}</output></label>
+          </div>
+          <div class="col">
+          <label><output>${u.position}</output></label>
+          </div>
+          <div class="col">
+          <label><output>${u.appLink}</output></label>
+          </div>
+          <div class="col">
+          <label><output>${u.openDate}</output></label>
+          </div>
+          <div class="col">
+          <label><output>${u.status}</output></label>
+          </div>
         </div>
-        <div class="col">
-        <label><output>${u.company}</output></label>
-        </div>
-        <div class="col">
-        <label><output>${u.position}</output></label>
-        </div>
-        <div class="col">
-        <label><output>${u.appLink}</output></label>
-        </div>
-        <div class="col">
-        <label><output>${u.openDate}</output></label>
-        </div>
-        <div class="col">
-        <label><output>${u.status}</output></label>
-        </div>
-    </div>
+        </form>
         `;
-
+      uEdit.innerHTML = "Edit";
+      uDel.innerHTML = "Delete";
+      uDiv.appendChild(uEdit);
+      uDiv.appendChild(uDel);
       updatesDiv.appendChild(uDiv);
+      console.log("test render added u", u);
+      uEdit.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        console.log("edit tracker is clicked");
+        editTracker(u, objects._id);
+      });
     }
   }
 
@@ -53,16 +67,16 @@ function Index() {
   async function createTracker(form) {
     console.log("create tracker", form);
     try {
-      // const res = await fetch("./tracker", {
       await fetch("./tracker", {
         method: "POST",
         body: new URLSearchParams(new FormData(form)),
       });
-      // console.log("fetch createTracker test -- res: ", res);
-      // const user_data = await res.json();
-      // console.log("check user_data.new_company: ", user_data.new_company);
-      // renderUpdates(user_data.new_company);
       getAllTracker();
+      let editButton = document.getElementsByClassName("editButton");
+      editButton.addEventListener("click", (evt) => {
+        console.log("edit button is clicked");
+        evt.preventDefault();
+      });
     } catch (err) {
       alert(`There is an error in createTracker ${err}`);
     }
@@ -74,59 +88,54 @@ function Index() {
       const res = await fetch("./tracker/get-tracker", {
         method: "GET",
       });
-
       const data = await res.json();
       console.log("data frontend get: ", data);
-
-      renderUpdates(data);
+      renderAdded(data);
     } catch (err) {
       alert(`There is an error getAllTracker ${err}`);
     }
   }
 
-  // async function getAllTracker(form) {
-  //   let responseClone;
-  //   await fetch("./tracker/get-tracker", {
-  //     method: "GET",
+  function editTracker(u, id) {
+    console.log("123 edit tracker id, u", id, u);
+    let tracker = document.querySelector("form#id");
+    console.log("test tracker123 ", tracker);
+    tracker.innerHTML = `
+      <div class="row row-cols-6">
+        <div class="col">
+        <label><input placeholder=${u.company}></input></label>
+        </div>
+        <div class="col">
+        <label><input placeholder=${u.position}></input></label>
+        </div>
+        <div class="col">
+        <label><input placeholder=${u.appLink}></input></label>
+        </div>
+        <div class="col">
+        <label><input placeholder=${u.openDate}></input></label>
+        </div>
+        <div class="col">
+        <label><input placeholder=${u.status}></input></label>
+        </div>
+      </div>
+      `;
+    updateTracker();
+  }
 
-  //     // body: new URLSearchParams(new FormData(form)),
-  //   })
-  //     .then((response) => {
-  //       console.log("debug9999");
-  //       console.log(response);
-  //       responseClone = response.clone();
-  //       console.log(response.json());
-  //       return response.json();
-  //     })
-  //     .then(
-  //       (data) => {
-  //         renderUpdates(data.result);
-  //       },
-  //       function (rejectionReason) {
-  //         console.log(
-  //           "Error parsing JSON from response: ",
-  //           rejectionReason,
-  //           responseClone
-  //         );
-  //       }
-  //   );
-  // }
+  // edit tracker and updates
+  async function updateTracker() {
+    try {
+      await fetch("./tracker/updated-tracker", {
+        method: "POST",
+        body: new URLSearchParams(new FormData(form)),
+      });
+      getAllTracker();
+    } catch (err) {
+      alert(`There is an error updateTracker ${err}`);
+    }
+  }
 
-  // async function getAllTracker() {
-  //   var responseClone;
-  //   await fetch("./tracker")
-  //     .then((response) => {
-  //       responseClone = response.clone();
-  //       response.json();
-  //     }
-  //     )
-  //     .then((data) => {
-  //       renderUpdates(data.result);
-  //     }, function (rejectionReason){
-  //       console.log("Error parsing JSON from response: ", rejectionReason, responseClone);
-  //     });
-  // }
-
+  updateTracker();
   getAllTracker();
   getTracker();
   return index;
