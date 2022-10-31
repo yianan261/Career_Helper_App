@@ -1,6 +1,6 @@
 // So Man Amanda Au-Yeung
-function Index() {
-  const index = {};
+function Tracker() {
+  const tracker = {};
 
   const updatesDiv = document.querySelector("div#updates");
   let form = document.getElementById("tracker-form");
@@ -12,15 +12,18 @@ function Index() {
       console.log("object, object id", objects, objects._id);
       let u = objects.tracker;
       let uDiv = document.createElement("div");
-      let uEdit = document.createElement("button");
-      uEdit.type = "button";
-      uEdit.className = "editButton";
-      const uDel = document.createElement("button");
-      uDel.type = "submit";
+      // let uEdit = document.createElement("button");
+      // uEdit.type = "button";
+      // uEdit.className = "editButton";
+      // const uDel = document.createElement("button");
+      // uDel.type = "submit";
       uDiv.className = "container-text-center";
       uDiv.innerHTML = `
       <form id=${objects._id}>
         <div class="row row-cols-6">
+        <div class="col">
+        <button id="editBtn">Edit</button>
+        </div>
           <div class="col">
           <label><output>${u.company}</output></label>
           </div>
@@ -39,16 +42,16 @@ function Index() {
         </div>
         </form>
         `;
-      uEdit.innerHTML = "Edit";
-      uDel.innerHTML = "Delete";
-      uDiv.appendChild(uEdit);
-      uDiv.appendChild(uDel);
+      // uEdit.innerHTML = "Edit";
+      // uDel.innerHTML = "Delete";
+      // updatesDiv.appendChild(uEdit);
+      // uDiv.appendChild(uDel);
       updatesDiv.appendChild(uDiv);
-      console.log("test render added u", u);
-      uEdit.addEventListener("click", (evt) => {
+      uDiv.querySelector("#editBtn").addEventListener("click", (evt) => {
         evt.preventDefault();
         console.log("edit tracker is clicked");
         editTracker(u, objects._id);
+        // updateTracker();
       });
     }
   }
@@ -72,11 +75,11 @@ function Index() {
         body: new URLSearchParams(new FormData(form)),
       });
       getAllTracker();
-      let editButton = document.getElementsByClassName("editButton");
-      editButton.addEventListener("click", (evt) => {
-        console.log("edit button is clicked");
-        evt.preventDefault();
-      });
+      // let editButton = document.getElementsByClassName("editButton");
+      // editButton.addEventListener("click", (evt) => {
+      //   console.log("edit button is clicked");
+      //   evt.preventDefault();
+      // });
     } catch (err) {
       alert(`There is an error in createTracker ${err}`);
     }
@@ -97,11 +100,12 @@ function Index() {
   }
 
   function editTracker(u, id) {
-    console.log("123 edit tracker id, u", id, u);
-    let tracker = document.querySelector("form#id");
-    console.log("test tracker123 ", tracker);
+    let tracker = document.getElementById(id);
     tracker.innerHTML = `
       <div class="row row-cols-6">
+      <div class="col">
+        <button id="editSubmit">Update</button>
+        </div>
         <div class="col">
         <label><input placeholder=${u.company}></input></label>
         </div>
@@ -112,15 +116,34 @@ function Index() {
         <label><input placeholder=${u.appLink}></input></label>
         </div>
         <div class="col">
-        <label><input placeholder=${u.openDate}></input></label>
+        <label><input type="date" id="new-input" name="openDate"></label>
         </div>
         <div class="col">
-        <label><input placeholder=${u.status}></input></label>
+        <label><select id="status" name="status">
+        <option value="Saved">Not Applied</option>
+        <option value="Applied">Applied</option>
+        <option value="Interview">Interview</option>
+        <option value="Offer">Offer</option>
+        <option value="Reject">Reject</option>
+        <option value="Withdraw">Withdraw</option>
+    </select></label>
         </div>
       </div>
       `;
-    updateTracker();
+    // let editSubmitId = tracker.querySelector("#editSubmit");
+    // feedUpdateTracker(editSubmitId);
+    // tracker.querySelector("#editSubmit").addEventListener("click", (evt) => {
+    //   evt.preventDefault();
+    //   updateTracker();
+    // });
   }
+
+  // function feedUpdateTracker(editId) {
+  //   editId.addEventListener("submit", (evt) => {
+  //     evt.preventDefault();
+  //     updateTracker();
+  //   });
+  // }
 
   // edit tracker and updates
   async function updateTracker() {
@@ -138,7 +161,7 @@ function Index() {
   updateTracker();
   getAllTracker();
   getTracker();
-  return index;
+  return tracker;
 }
 
-Index();
+Tracker();
