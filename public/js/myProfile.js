@@ -21,6 +21,9 @@ function MyProfile() {
       console.error(err);
     }
   };
+
+  
   userInSession();
+  
 }
 MyProfile();

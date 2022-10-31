@@ -40,10 +40,10 @@
                         <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/profile" class="nav-link user-page">My Profile</a>
+                        <a href="/sign-in/getUserProfile" class="nav-link user-page" id="profile">My Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/tracker" class="nav-link user-page">My Tracker</a>
+                        <a href="/sign-in/getUserProfile" class="nav-link user-page" id="tracker">My Tracker</a>
                     </li>
                     <li class="nav-item">
                         <a href="/jobs" class="nav-link">Jobs</a>
@@ -55,18 +55,65 @@
     </nav>
     <div class="container-xl mainDiv">
         <main>
-            <h1>Open Engineering Jobs</h1>
+            <div class="header">
+                <h1>Explore career opportunities</h1>
+                <div class="col-4 inputDiv">
+                    <div class="input-group rounded">
+                        <input type="search" id="searchReq" name="search" class="form-control rounded"
+                            placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                        <span class="input-group-text border-0" id="search-addon">
+                            <i class="fas fa-search" data-bs-toggle="tooltip" data-bs-title="press enter to search"></i>
+                        </span>
+                    </div>
+                </div>
+                <h2 class="noRes"></h2>
+            </div>
+            <hr>
             <section>
-                <div id="jobPosts">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis laudantium libero
-                    provident magni molestiae, tempora odio quidem tenetur pariatur vel velit veritatis hic molestias.
-                    Fuga incidunt nihil harum architecto est?</div>
+                <div class="cards">
+
+                    <div class="row justify-content-evenly gx-3" id="jobPosts"></div>
 
             </section>
+
         </main>
+        <footer>
+            <div class="paginationDiv">
+                <div class="btn-paginacao">
+                    <ul>
+                        <li class="prev"><label for="paginacaoPrev" id="prev"> <i
+                                    class="fa-solid fa-angles-left"></i></label>
+                        </li>
+                        <li><label for="paginacao1" id="p1"> 1</label></li>
+                        <li><label for="paginacao2" id="p2">2</label></li>
+                        <li><label for="paginacao3" id="p3">3</label></li>
+                        <li><label for="paginacao4" id="p4">4</label></li>
+                        <li class="next"><label for="paginacaoNext" id="next">
+                                <i class="fa-solid fa-angles-right"></i> </label></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
     </div>
 </body>
 
 <script src="/js/jobs.js"></script>
-<script src="/node_modules/d3-dsv/dist/d3-dsv.min.js"></script>
+<!--This script checks if user is logged in or not before being able to click on "my profile" and "my tracker"-->
+<script src="./js/index.js"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+<!--script for tooltips-->
+<script>
+    const tooltipTriggerList = document.querySelectorAll(
+        "[data-bs-toggle='tooltip']"
+    );
+    const tooltipList = [...tooltipTriggerList].map(
+        (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+    );
+</script>
+
 
 </html>
