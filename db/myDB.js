@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config({ path: "./config/config.env" });
 
@@ -157,7 +157,6 @@ function MyMongoDB() {
   // Amanda Au-Yeung
   // function to get tracker
   myDB.createTracker = async (_tracker, _email) => {
-    console.log("this is tracker in DB", _tracker);
     let client;
     try {
       client = new MongoClient(url);
@@ -193,20 +192,24 @@ function MyMongoDB() {
 
   // Amanda Au-Yeung
   //function that updates the tracker info by companies
-  myDB.updateTracker = async (_email, _company) => {
+  myDB.updateTracker = async (id, eachTracker) => {
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const trackerCol = db.collection(TRACKER_COLLECTION);
-      const res = await trackerCol.updateOne({ email: _email }, {$set: {company: _company}});
+      const res = await trackerCol.updateOne(
+        { _id: ObjectId(id) },
+        { $set: { tracker: eachTracker } }
+      );
       return res;
+    } catch (err) {
+      console.log(`This is the error ${err}`);
     } finally {
       console.log("Closing the connection");
       client.close();
     }
   };
-
 
   return myDB;
 }

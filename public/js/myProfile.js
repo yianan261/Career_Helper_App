@@ -47,9 +47,7 @@ async function drawChart() {
   data.addColumn("string", "Status");
   data.addColumn("number", "Applications");
   for (let [status, count] of trackerCount) {
-    data.addRows([
-      [status, count],
-    ]);
+    data.addRows([[status, count]]);
   }
 
   // Set chart options
@@ -88,13 +86,10 @@ async function getAllTracker() {
     });
     const data = await res.json();
     return renderApplications(data);
-    // console.log("render app", renderApplications(data));
-    // drawChart(renderApplications(data));
   } catch (err) {
     alert(`There is an error getAllTracker ${err}`);
   }
 }
-
 
 getAllTracker();
 MyProfile();

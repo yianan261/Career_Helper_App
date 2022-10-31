@@ -12,11 +12,6 @@ function Tracker() {
       console.log("object, object id", objects, objects._id);
       let u = objects.tracker;
       let uDiv = document.createElement("div");
-      // let uEdit = document.createElement("button");
-      // uEdit.type = "button";
-      // uEdit.className = "editButton";
-      // const uDel = document.createElement("button");
-      // uDel.type = "submit";
       uDiv.className = "container-text-center";
       uDiv.innerHTML = `
       <form id=${objects._id}>
@@ -42,16 +37,11 @@ function Tracker() {
         </div>
         </form>
         `;
-      // uEdit.innerHTML = "Edit";
-      // uDel.innerHTML = "Delete";
-      // updatesDiv.appendChild(uEdit);
-      // uDiv.appendChild(uDel);
       updatesDiv.appendChild(uDiv);
       uDiv.querySelector("#editBtn").addEventListener("click", (evt) => {
         evt.preventDefault();
         console.log("edit tracker is clicked");
         editTracker(u, objects._id);
-        // updateTracker();
       });
     }
   }
@@ -60,9 +50,8 @@ function Tracker() {
     if (form) {
       form.addEventListener("submit", (evt) => {
         evt.preventDefault();
-        console.log("getTracker frontend form: ", form);
         createTracker(form);
-        form = document.getElementById("tracker-form");
+        document.getElementById("tracker-form").reset();
       });
     }
   }
@@ -75,11 +64,6 @@ function Tracker() {
         body: new URLSearchParams(new FormData(form)),
       });
       getAllTracker();
-      // let editButton = document.getElementsByClassName("editButton");
-      // editButton.addEventListener("click", (evt) => {
-      //   console.log("edit button is clicked");
-      //   evt.preventDefault();
-      // });
     } catch (err) {
       alert(`There is an error in createTracker ${err}`);
     }
@@ -102,21 +86,22 @@ function Tracker() {
   function editTracker(u, id) {
     let tracker = document.getElementById(id);
     tracker.innerHTML = `
+    <form id=${id}>
       <div class="row row-cols-6">
       <div class="col">
-        <button id="editSubmit">Update</button>
+        <button type="submit" id="editSubmit">Update</button>
         </div>
         <div class="col">
-        <label><input placeholder=${u.company}></input></label>
+        <label><input name="company" placeholder=${u.company}></input></label>
         </div>
         <div class="col">
-        <label><input placeholder=${u.position}></input></label>
+        <label><input name="position" placeholder=${u.position}></input></label>
         </div>
         <div class="col">
-        <label><input placeholder=${u.appLink}></input></label>
+        <label><input name="appLink" placeholder=${u.appLink}></input></label>
         </div>
         <div class="col">
-        <label><input type="date" id="new-input" name="openDate"></label>
+        <label><input name="date" type="date" id="new-input" name="openDate"></label>
         </div>
         <div class="col">
         <label><select id="status" name="status">
@@ -129,28 +114,26 @@ function Tracker() {
     </select></label>
         </div>
       </div>
+      </form>
       `;
-    // let editSubmitId = tracker.querySelector("#editSubmit");
-    // feedUpdateTracker(editSubmitId);
-    // tracker.querySelector("#editSubmit").addEventListener("click", (evt) => {
-    //   evt.preventDefault();
-    //   updateTracker();
-    // });
+    tracker?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      updateTracker(tracker, id);
+    });
+    // }
   }
 
-  // function feedUpdateTracker(editId) {
-  //   editId.addEventListener("submit", (evt) => {
-  //     evt.preventDefault();
-  //     updateTracker();
-  //   });
-  // }
-
   // edit tracker and updates
-  async function updateTracker() {
+  async function updateTracker(newForm, id) {
+    console.log("newForm test updateTracker", newForm);
+    console.log(
+      "newForm data test updateTracker",
+      new FormData(newForm).get("company")
+    );
     try {
-      await fetch("./tracker/updated-tracker", {
+      await fetch(`./tracker/updated-tracker?id=${id}`, {
         method: "POST",
-        body: new URLSearchParams(new FormData(form)),
+        body: new URLSearchParams(new FormData(newForm)),
       });
       getAllTracker();
     } catch (err) {
@@ -158,7 +141,6 @@ function Tracker() {
     }
   }
 
-  updateTracker();
   getAllTracker();
   getTracker();
   return tracker;
