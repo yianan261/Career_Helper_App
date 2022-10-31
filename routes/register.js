@@ -3,6 +3,7 @@ const router = express.Router();
 import { register } from "../controllers/register.js";
 
 //Yian Chen
+//post method that registers user
 router.post("/", register);
 
 router.get("/", (req, res) => {

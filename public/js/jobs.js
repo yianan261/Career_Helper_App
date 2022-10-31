@@ -18,7 +18,6 @@ function JobClient() {
       <hr> 
       <div style="width:100%"> <div class="text"style="font-weight:light;color:#808080">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, laborum? Impedit doloremque at, nisi  </div>
       <div style="text-align:right;overflow:hidden; padding-bottom:2%"><label><a href=${p.job_url}>View More </a></label></div>   </div>
-    
     </div>`;
 
       jobPosts.appendChild(pDiv);
@@ -40,17 +39,17 @@ function JobClient() {
       findAllPosts(search.value);
     });
   };
+  
   //function that searches posts from fetch
   const findAllPosts = async (keyword) => {
     try {
-      const noRes = document.querySelector(".noRes");
       const res = await fetch(`./jobs/search/?query=${keyword}`, {
         method: "POST",
         body: new URLSearchParams({ query: `${keyword}` }),
       });
       const resPosts = await res.json();
       if (resPosts.data.length === 0) {
-        noRes.innerHTML = "No Search Results";
+        alert("No Search Results");
       } else {
         renderPosts(resPosts.data);
       }

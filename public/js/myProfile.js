@@ -13,7 +13,6 @@ function MyProfile() {
       const res = await fetch("./profile/user/edit-profile");
       const profileData = await res.json();
       if (profileData.data) {
-        console.log("profileData.data", profileData.data);
         renderProfile(profileData.data);
       }
     } catch (err) {
@@ -22,8 +21,6 @@ function MyProfile() {
     }
   };
 
-  
   userInSession();
-  
 }
 MyProfile();

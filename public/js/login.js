@@ -6,23 +6,23 @@ function Login() {
   let currUser = null;
   clientUser.currUser = currUser;
 
+  //show message function
   const showMsg = (msg) => {
     alert(msg);
   };
 
+  //redirect function
   const redirect = (page) => {
     window.location.replace(`/${page}`);
   };
 
   //function that listens to form and on submit authenticates user login
   clientUser.setupLogin = () => {
-    console.log("setup login");
     const form = document.querySelector("form#stripe-login");
     let res;
     if (form) {
       form.addEventListener("submit", (evt) => {
         evt.preventDefault();
-        console.log("authenticating");
         authenticate(form);
       });
     }
@@ -34,9 +34,7 @@ function Login() {
           method: "POST",
           body: new URLSearchParams(new FormData(_form)),
         });
-        console.log("res.body", res.body);
         const resUser = await res.json();
-        console.log("RES", resUser);
         //if user is logged in, redirect to profile page
         if (resUser.isLoggedIn) {
           //this sets user in session
@@ -57,20 +55,15 @@ function Login() {
     // let res;
     if (logoutLink) {
       logoutLink.addEventListener("click", (evt) => {
-        console.log("Logout event listener");
         evt.preventDefault();
-        console.log("logout");
         logout();
       });
     }
 
     const logout = async () => {
       try {
-        console.log("logging out");
         const res = await fetch("/sign-in/logout");
         const resLogout = await res.json();
-        console.log("114");
-        console.log("RESLOGOUT", resLogout.msg);
         showMsg(resLogout.msg);
         setTimeout(() => redirect("sign-in", 2000));
       } catch (err) {
@@ -81,8 +74,6 @@ function Login() {
   };
   clientUser.setupLogin();
   clientUser.setupLogout();
-  // clientUser.getCurrUser();
-  // clientUser.getProfile();
 
   return clientUser;
 }

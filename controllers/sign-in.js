@@ -21,6 +21,19 @@ export const authenticateUser = async (req, res) => {
 //function that logs out user
 export const logOut = (req, res) => {
   req.session.user = null;
-  console.log("session logout", req.session.user);
   res.json({ isLoggedIn: false, msg: "Logged out successfully" });
+};
+
+//function that gets the user's profile if user is authenticated
+export const getUserProfile = async (req, res) => {
+  //if no one is logged in (no one in session)
+  if (!req.session.user) {
+    //return here so code doesn't keep running
+    return res.json({
+      isLoggedIn: false,
+      err: "Not authenticated, please log in",
+    });
+  } else {
+    return res.json({ isLoggedIn: true });
+  }
 };
