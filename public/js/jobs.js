@@ -29,33 +29,30 @@ function JobClient() {
   const getPosts = async (_page) => {
     const res = await fetch(`./jobs/display-jobs/?page=${_page}`);
     const postData = await res.json();
-    console.log("res JOB DATA", postData);
     renderPosts(postData);
   };
 
   //function that searches posts
   const searchPosts = () => {
-    const search = document.querySelector('input[type="search"]');
+    const search = document.querySelector("input[type='search']");
     search.addEventListener("search", (evt) => {
       evt.preventDefault();
-      console.log("searching");
       findAllPosts(search.value);
     });
   };
   //function that searches posts from fetch
   const findAllPosts = async (keyword) => {
     try {
+      const noRes = document.querySelector(".noRes");
       const res = await fetch(`./jobs/search/?query=${keyword}`, {
         method: "POST",
         body: new URLSearchParams({ query: `${keyword}` }),
       });
-      console.log("line 51 search", res.body);
       const resPosts = await res.json();
-      if (!resPosts.data) {
-        console.log("NO DATA");
-        jobPosts.innerHTML = `${resPosts.msg}`;
+      if (resPosts.data.length === 0) {
+        noRes.innerHTML = "No Search Results";
       } else {
-        renderPosts(jobPosts.data);
+        renderPosts(resPosts.data);
       }
     } catch (err) {
       alert(`There is an error ${err}`);
