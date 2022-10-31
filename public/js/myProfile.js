@@ -1,9 +1,13 @@
 function MyProfile() {
-  //Yian Chen
+  //Yian Chen, Amanda Au-Yeung
   //renders profile
   const renderProfile = (data) => {
     const greetUser = document.getElementById("greetUser");
+    let skills = document.getElementById("profileSkills");
+    let improve = document.getElementById("improve");
     greetUser.innerHTML = `Hello ${data.name}`;
+    skills.innerHTML = `<div>${data.skills}</div>`;
+    improve.innerHTML = `<div>${data.toWorkOn}</div>`;
   };
 
   //Yian Chen
@@ -40,7 +44,6 @@ google.charts.setOnLoadCallback(drawChart);
 // draws it.
 async function drawChart() {
   let trackerCount = await getAllTracker();
-  console.log("draw Chart", trackerCount);
   // Create the data table.
   // eslint-disable-next-line no-undef
   let data = new google.visualization.DataTable();
@@ -75,7 +78,6 @@ function renderApplications(data) {
       dataCount.set(u.status, dataCount.get(u.status) + 1);
     }
   }
-  console.log(dataCount);
   return dataCount;
 }
 

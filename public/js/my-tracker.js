@@ -67,7 +67,6 @@ function Tracker() {
   }
 
   async function getAllTracker() {
-    console.log("get tracker");
     try {
       const res = await fetch("./tracker/get-tracker", {
         method: "GET",

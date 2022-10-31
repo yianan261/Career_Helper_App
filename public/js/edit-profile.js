@@ -90,7 +90,6 @@ function EditProfile() {
         alert(profileRes.message);
       } catch (err) {
         alert(`There is an error ${err}`);
-        console.error(err);
       }
     };
   };
