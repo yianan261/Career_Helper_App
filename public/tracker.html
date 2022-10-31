@@ -77,24 +77,25 @@
             </div>
           </div>
           <div id="updates"> Loading...
+            <!-- <form class="tempForm" id="tempForm"></form>  -->
           </div>
           <form action="/tracker" method="post" id="tracker-form">
           <div class="container-text-center" id="tracker-content">
             <div class="row row-cols-6">
                 <div class="col">
-                <button type="submit" value="add">+</button>
+                <button type="submit" name="crud" value="add">+</button>
                 </div>
               <div class="col">
-                <input type="text" name="company" id="new-input" placeholder="Company Name">
+                <input type="text" name="company" id="new-input" placeholder="Company Name" value="">
               </div>
               <div class="col">
-                <input type="text" name="position" id="new-input" placeholder="Position">
+                <input type="text" name="position" id="new-input" placeholder="Position" value="">
               </div>
               <div class="col">
-                <input type="url" name="appLink" id="new-input" placeholder="https://example.com">
+                <input type="url" name="appLink" id="new-input" placeholder="https://example.com" value="" class>
               </div>
               <div class="col">
-                <input type="date" id="new-input" name="openDate">
+                <input type="date" id="new-input" name="openDate" value="">
               </div>
               <div class="col">
                 <select id="status" name="status">
@@ -115,5 +116,5 @@
 <script src="/js/jobs.js"></script>
 <script src="/node_modules/d3-dsv/dist/d3-dsv.min.js"></script>
 <script src="./js/my-tracker.js"></script>
-
+<!-- <script src="./js/edit-tracker.js"></script> -->
 </html>

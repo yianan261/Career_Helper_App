@@ -177,20 +177,36 @@ function MyMongoDB() {
 
   // Amanda Au-Yeung
   //function that gets tracker info by companies
-  myDB.getAllTracker = async (email) => {
+  myDB.getAllTracker = async (_email) => {
     let client;
     try {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const trackerCol = db.collection(TRACKER_COLLECTION);
-      const res = await trackerCol.find({ email: email }).toArray();
-      // console.log("Got companies", res);
+      const res = await trackerCol.find({ email: _email }).toArray();
       return res;
     } finally {
       console.log("Closing the connection");
       client.close();
     }
   };
+
+  // Amanda Au-Yeung
+  //function that updates the tracker info by companies
+  myDB.updateTracker = async (_email, _company) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const trackerCol = db.collection(TRACKER_COLLECTION);
+      const res = await trackerCol.updateOne({ email: _email }, {$set: {company: _company}});
+      return res;
+    } finally {
+      console.log("Closing the connection");
+      client.close();
+    }
+  };
+
 
   return myDB;
 }
