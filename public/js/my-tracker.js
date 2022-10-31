@@ -7,9 +7,7 @@ function Tracker() {
 
   function renderAdded(updates) {
     updatesDiv.innerHTML = "";
-    console.log("render added", updates);
     for (let objects of updates["companies"]) {
-      console.log("object, object id", objects, objects._id);
       let u = objects.tracker;
       let uDiv = document.createElement("div");
       uDiv.className = "container-text-center";
@@ -40,7 +38,6 @@ function Tracker() {
       updatesDiv.appendChild(uDiv);
       uDiv.querySelector("#editBtn").addEventListener("click", (evt) => {
         evt.preventDefault();
-        console.log("edit tracker is clicked");
         editTracker(u, objects._id);
       });
     }
@@ -76,7 +73,6 @@ function Tracker() {
         method: "GET",
       });
       const data = await res.json();
-      console.log("data frontend get: ", data);
       renderAdded(data);
     } catch (err) {
       alert(`There is an error getAllTracker ${err}`);
@@ -101,7 +97,7 @@ function Tracker() {
         <label><input name="appLink" placeholder=${u.appLink}></input></label>
         </div>
         <div class="col">
-        <label><input name="date" type="date" id="new-input" name="openDate"></label>
+        <label><input name="date" type="date" id="new-input" name="openDate" placeholder=${u.openDate}></label>
         </div>
         <div class="col">
         <label><select id="status" name="status">
@@ -120,16 +116,10 @@ function Tracker() {
       e.preventDefault();
       updateTracker(tracker, id);
     });
-    // }
   }
 
   // edit tracker and updates
   async function updateTracker(newForm, id) {
-    console.log("newForm test updateTracker", newForm);
-    console.log(
-      "newForm data test updateTracker",
-      new FormData(newForm).get("company")
-    );
     try {
       await fetch(`./tracker/updated-tracker?id=${id}`, {
         method: "POST",
