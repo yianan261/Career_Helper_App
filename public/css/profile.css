@@ -14,15 +14,8 @@
   height: 100vh;
 }
 
-/* Give every child element its grid name */
-/* .header {
-  grid-area: header;
-  background-color: rgb(36, 4, 180);
-} */
-
 .sidenav {
   width: 240px;
-  /* height: 50vh; */
   background-color: #d1f2ff;
 }
 
@@ -124,7 +117,6 @@
   box-sizing: border-box;
 }
 
-/* Force varying heights to simulate dynamic content */
 .card:first-child {
   height: 570px;
 }
@@ -162,4 +154,3 @@
 .sidebar {
   grid-area: sd;
 }
-

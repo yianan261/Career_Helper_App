@@ -1,4 +1,5 @@
 //Yian Chen
+//Registration module
 function Registration() {
   const form = document.getElementById("stripe-login2");
   const emailErr = document.querySelector("input[name='email']");
@@ -15,7 +16,6 @@ function Registration() {
         body: new URLSearchParams(new FormData(form)),
       });
       const res = await user.json();
-      console.log("res", res);
       //if there is registration error, show error
       if (res.error) {
         if (res.err === "email") {
@@ -43,7 +43,7 @@ function Registration() {
     });
   }
 
-  //password verification for the registration page to check if passwords are matching
+  //password verification function for the registration page to check if passwords are matching
   const checkPassword = () => {
     const val = {};
     const pass = document.querySelector("#password");

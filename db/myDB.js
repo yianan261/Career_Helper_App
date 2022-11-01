@@ -23,12 +23,10 @@ function MyMongoDB() {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      console.log("searching for", user);
       const res = await usersCol.findOne({ email: user.email });
       if (res && res.password === user.password) return true;
       return false;
     } finally {
-      console.log("closing the connection");
       client.close();
     }
   };
@@ -40,12 +38,9 @@ function MyMongoDB() {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      console.log("Collection read, insert ", user);
       const res = await usersCol.insertOne(user);
-      console.log("Inserted!", res);
       return res;
     } finally {
-      console.log("Closing the connection");
       client.close();
     }
   };
@@ -60,12 +55,9 @@ function MyMongoDB() {
       const options = {
         projection: { password: 0, "confirm-password": 0, confirm_password: 0 },
       };
-      console.log(`getting user with email ID of ${_email}`);
       const res = await usersCol.findOne({ email: _email }, options);
-      console.log("Got user", res);
       return res;
     } finally {
-      console.log("Closing the connection");
       client.close();
     }
   };
@@ -77,17 +69,12 @@ function MyMongoDB() {
       client = new MongoClient(url);
       const db = client.db(DB_NAME);
       const usersCol = db.collection(USER_COLLECTION);
-      console.log(
-        `getting user with email ID of ${_email} and updating profile`
-      );
       const res = await usersCol.updateOne(
         { email: _email },
         { $set: { profile: _profile } }
       );
-      console.log("Profile updated DB 82", res);
       return res;
     } finally {
-      console.log("Closing the connection");
       client.close();
     }
   };
@@ -104,12 +91,10 @@ function MyMongoDB() {
           profile: 1,
         },
       };
-      console.log(`getting user with email ID of ${_email}`);
       const res = await usersCol.findOne({ email: _email }, options);
       console.log("Got user profile", res);
       return res;
     } finally {
-      console.log("Closing the connection");
       client.close();
     }
   };
@@ -126,7 +111,6 @@ function MyMongoDB() {
         .limit(PAGE_SIZE)
         .toArray();
     } finally {
-      console.log("Closing db connection");
       client.close();
     }
   };
@@ -149,7 +133,6 @@ function MyMongoDB() {
         .limit(PAGE_SIZE)
         .toArray();
     } finally {
-      console.log("Closing db connection");
       client.close();
     }
   };

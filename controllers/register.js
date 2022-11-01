@@ -1,13 +1,20 @@
 import myDB from "../db/myDB.js";
 
 //Yian Chen
+/**
+ * registration function
+ * checks the request body and searches DB to see if user has
+ * already been registered, if so they will be asked to sign-in
+ * if not new user will be created
+ * @param {object} req
+ * @param {object} res
+ */
 export const register = async (req, res) => {
   let user;
   let checker;
   try {
     user = req.body;
     checker = await myDB.getUser(user.email);
-    console.log("Checker", user, checker);
     if (
       user.email != undefined &&
       checker === null &&
@@ -25,7 +32,7 @@ export const register = async (req, res) => {
       }
     }
   } catch (err) {
-    //Todo: show error in frontend
+    alert(`There is an error ${err}`);
     console.error("error", err);
     res.status(400).send({ err: err });
   }
