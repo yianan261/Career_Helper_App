@@ -5,6 +5,9 @@ The career helper app is particularly designed for anyone in the job search. The
 ## Project Objective
 A career helper app built with Node.js, Express.js, MongoDB, HTML, CSS, Javascript.
 
+## Deployment URL
+https://career-helper-app.herokuapp.com/
+
 ## Screenshots
 ### Home Page
 <img width="1833" alt="Screen Shot 2022-10-31 at 10 53 17 PM" src="https://user-images.githubusercontent.com/58647320/199170785-f3c4ffbc-add8-47f2-8a14-a76d3eb63abe.png">
