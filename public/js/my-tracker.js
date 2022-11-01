@@ -15,7 +15,8 @@ function Tracker() {
       <form id=${objects._id}>
         <div class="row row-cols-6">
         <div class="col">
-        <button id="editBtn">Edit</button>
+        <button id="editBtn"><i style='font-size:24px' class='far'>&#xf044;</i></button>
+        <button id="delBtn"><i style='font-size:24px' class='fas'>&#xf2ed;</i></button>
         </div>
           <div class="col">
           <label><output>${u.company}</output></label>
@@ -39,6 +40,10 @@ function Tracker() {
       uDiv.querySelector("#editBtn").addEventListener("click", (evt) => {
         evt.preventDefault();
         editTracker(u, objects._id);
+      });
+      uDiv.querySelector("#delBtn").addEventListener("click", (evt) => {
+        evt.preventDefault();
+        delTracker(objects._id);
       });
     }
   }
@@ -72,6 +77,7 @@ function Tracker() {
         method: "GET",
       });
       const data = await res.json();
+      console.log("data from get All Tracker", data);
       renderAdded(data);
     } catch (err) {
       alert(`There is an error getAllTracker ${err}`);
@@ -87,16 +93,16 @@ function Tracker() {
         <button type="submit" id="editSubmit">Update</button>
         </div>
         <div class="col">
-        <label><input name="company" placeholder=${u.company}></input></label>
+        <label><input name="company" id="new-input" placeholder=${u.company}></input></label>
         </div>
         <div class="col">
-        <label><input name="position" placeholder=${u.position}></input></label>
+        <label><input name="position" id="new-input" placeholder=${u.position}></input></label>
         </div>
         <div class="col">
-        <label><input name="appLink" placeholder=${u.appLink}></input></label>
+        <label><input name="appLink" id="new-input" placeholder=${u.appLink}></input></label>
         </div>
         <div class="col">
-        <label><input name="date" type="date" id="new-input" name="openDate" placeholder=${u.openDate}></label>
+        <label><input name="openDate" type="date" id="new-input" placeholder=${u.openDate}></label>
         </div>
         <div class="col">
         <label><select id="status" name="status">
@@ -127,6 +133,25 @@ function Tracker() {
       getAllTracker();
     } catch (err) {
       alert(`There is an error updateTracker ${err}`);
+    }
+  }
+
+
+  // del tracker
+  function delTracker(id) {
+    let selectedTracker = document.getElementById(id);
+    selectedTracker.remove();
+    deleteTracker(id);
+  }
+
+  // del tracker fetch
+  async function deleteTracker(id) {
+    try {
+      await fetch(`./tracker/deleteTracker?id=${id}`, {
+        method: "POST",
+      });
+    } catch (err) {
+      alert(`There is an error in delete tracker ${err}`);
     }
   }
 

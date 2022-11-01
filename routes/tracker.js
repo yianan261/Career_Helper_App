@@ -50,4 +50,17 @@ router.post("/updated-tracker", async (req, res) => {
   }
 });
 
+// delete in DB
+router.post("/deleteTracker", async (req, res) => {
+  let id = req.query.id;
+  try {
+    if (id) {
+      await myDB.deleteTracker(id);
+      res.status(200).send("success");
+    }
+  } catch (err) {
+    res.status(400).send({err: `There was an error in routing delete tracker ${err}`});
+  }
+});
+
 export default router;

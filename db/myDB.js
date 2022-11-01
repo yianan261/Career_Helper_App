@@ -211,6 +211,26 @@ function MyMongoDB() {
     }
   };
 
+  // Amanda Au-Yeung
+  // function that deletes the tracker info by companies
+  myDB.deleteTracker = async (id) => {
+    let client;
+    try {
+      client = new MongoClient(url);
+      const db = client.db(DB_NAME);
+      const trackerCol = db.collection(TRACKER_COLLECTION);
+      const res = await trackerCol.deleteOne(
+        { _id: ObjectId(id) }
+      );
+      return res;
+    } catch (err) {
+      console.log(`This is the error ${err}`);
+    } finally {
+      console.log("Closing the connection");
+      client.close();
+    }
+  };
+
   return myDB;
 }
 

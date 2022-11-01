@@ -5,7 +5,7 @@ function MyProfile() {
     const greetUser = document.getElementById("greetUser");
     let skills = document.getElementById("profileSkills");
     let improve = document.getElementById("improve");
-    greetUser.innerHTML = `Hello ${data.name}`;
+    greetUser.innerHTML = `Hello, ${data.name}!`;
     skills.innerHTML = `<div>${data.skills}</div>`;
     improve.innerHTML = `<div>${data.toWorkOn}</div>`;
   };
@@ -17,12 +17,10 @@ function MyProfile() {
       const res = await fetch("./profile/user/edit-profile");
       const profileData = await res.json();
       if (profileData.data) {
-        console.log("profileData.data", profileData.data);
         renderProfile(profileData.data);
       }
     } catch (err) {
       alert(`There is an error ${err}`);
-      console.error(err);
     }
   };
 
@@ -57,7 +55,7 @@ async function drawChart() {
   var options = {
     title: "Application Status",
     width: 300,
-    height: 300,
+    height: 350,
   };
 
   // Instantiate and draw our chart, passing in some options.
