@@ -52,7 +52,6 @@ function Login() {
   //function that logs user out
   clientUser.setupLogout = () => {
     const logoutLink = document.getElementById("logout");
-    // let res;
     if (logoutLink) {
       logoutLink.addEventListener("click", (evt) => {
         evt.preventDefault();
