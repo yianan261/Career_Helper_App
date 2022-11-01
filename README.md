@@ -43,6 +43,9 @@ https://docs.google.com/presentation/d/1LDu-aQO1kb1h-K93a5c6HTp4jHIgH42dJ02MjFZh
 ## Business Document
 https://docs.google.com/document/d/171yKsxTVATrT30e2c8YJNQw8LKx3K8I0HCIAf1SHlSk/edit
 
+## Video
+https://www.youtube.com/watch?v=egF2Lr6hlZQ
+
 ## Authors
 - Yian Chen
 - So Man Amanda Au-Yeung
