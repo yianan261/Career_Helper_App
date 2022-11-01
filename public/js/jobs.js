@@ -55,7 +55,6 @@ function JobClient() {
       }
     } catch (err) {
       alert(`There is an error ${err}`);
-      console.error(err);
     }
   };
 

@@ -2,14 +2,14 @@ import { MongoClient, ObjectId } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config({ path: "./config/config.env" });
 
-//Yian Chen
+//Yian Chen, Amanda Au-Yeung
 /**
  * MyMongoDB module funciton has authenticate, get, and create functionalities for the DB
  * @returns myDB object contianing the functions
  */
 function MyMongoDB() {
   const myDB = {};
-  const url = "mongodb://localhost:27017" || process.env.MONGO_URI;
+  const url = process.env.MONGO_URI || "mongodb://localhost:27017";
   const DB_NAME = "careerHelperMembers";
   const USER_COLLECTION = "user";
   const TRACKER_COLLECTION = "tracker";
