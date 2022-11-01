@@ -14,10 +14,10 @@ function Tracker() {
       uDiv.innerHTML = `
       <form id=${objects._id}>
         <div class="row row-cols-6">
-        <div class="col">
-        <button id="editBtn"><i style='font-size:24px' class='far'>&#xf044;</i></button>
-        <button id="delBtn"><i style='font-size:24px' class='fas'>&#xf2ed;</i></button>
-        </div>
+          <div class="col">
+          <button id="editBtn"><i style='font-size:24px' class='far'>&#xf044;</i></button>
+          <button id="delBtn"><i style='font-size:24px' class='fas'>&#xf2ed;</i></button>
+          </div>
           <div class="col">
           <label><output>${u.company}</output></label>
           </div>
@@ -34,8 +34,8 @@ function Tracker() {
           <label><output>${u.status}</output></label>
           </div>
         </div>
-        </form>
-        `;
+      </form>
+      `;
       updatesDiv.appendChild(uDiv);
       uDiv.querySelector("#editBtn").addEventListener("click", (evt) => {
         evt.preventDefault();
@@ -51,19 +51,22 @@ function Tracker() {
   function getTracker() {
     if (form) {
       form.addEventListener("submit", (evt) => {
+        console.log("evt", evt);
+        evt.stopPropagation();
         evt.preventDefault();
+        console.log("fired submit1");
         createTracker(form);
         document.getElementById("tracker-form").reset();
       });
     }
   }
 
-  async function createTracker(form) {
-    console.log("create tracker", form);
+  async function createTracker(_form) {
+    console.log("create tracker", _form);
     try {
       await fetch("./tracker", {
         method: "POST",
-        body: new URLSearchParams(new FormData(form)),
+        body: new URLSearchParams(new FormData(_form)),
       });
       getAllTracker();
     } catch (err) {
@@ -77,7 +80,6 @@ function Tracker() {
         method: "GET",
       });
       const data = await res.json();
-      console.log("data from get All Tracker", data);
       renderAdded(data);
     } catch (err) {
       alert(`There is an error getAllTracker ${err}`);
@@ -135,7 +137,6 @@ function Tracker() {
       alert(`There is an error updateTracker ${err}`);
     }
   }
-
 
   // del tracker
   function delTracker(id) {
