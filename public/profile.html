@@ -21,10 +21,8 @@
         rel="stylesheet">
     <!--Font Awsome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    
     <!-- google charts api -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
     <title>My Profile</title>
 
 </head>
@@ -54,25 +52,15 @@
                     </li>
                 </ul>
             </div>
-            <span><a href="/sign-in/logout" id="logout">Log out &nbsp<i
-                        class="fa-solid fa-right-from-bracket"></i></a></span>
-
+            <span><a href="/sign-in/logout" id="logout">Log out &nbsp<i class="fa-solid fa-right-from-bracket"></i></a></span>
     </nav>
 
-    <!-- <div class="container-xl mainDiv"> -->
-    <!-- <main>
-
-            <button><a href="/profile/edit-profile">Edit Profile</a></button>
-        </main> -->
     <div class="grid-container">
-        <!-- <header class="header"></header> -->
-
         <aside class="sidenav">
             <ul class="sidenav__list">
                 <li class="sidenav__list-item" data-bs-toggle="tooltip" data-bs-title="click to edit profile"
                     data-bs-placement="right"><i class="fa-solid fa-pen-to-square"></i>&nbsp&nbsp<a class="editProf"
-                        href="/profile/edit-profile">Edit
-                        Profile</a></li>
+                        href="/profile/edit-profile">Edit Profile</a></li>
                 <li class="sidenav__list-item"><i class="fa-solid fa-envelope"></i>&nbsp&nbsp Messages</li>
                 <li class="sidenav__list-item"><i class="fa-solid fa-gear"></i>&nbsp&nbsp Account Settings</li>
                 <li class="sidenav__list-item"><i class="fa-solid fa-calendar"></i>&nbsp&nbsp Calendar</li>
@@ -82,10 +70,6 @@
 
 
         <main class="main">
-
-            <!-- <div class="alert alert-info alert-dismissible fade show" role="alert" id="msg">
-                <span id="msgContent"></span>
-            </div> -->
 
             <div class="main-header__heading greet" id="greetUser">Hello User</div>
 
@@ -115,20 +99,17 @@
 
         </main>
 
-        <!-- <footer class="footer">
-            <div class="footerCopyright">&copy; 2022 Career Helper</div>
-
-        </footer> -->
-
+        
     </div>
-    <!-- </div> -->
+    
+    
 </body>
 
-<script src="./js/myProfile.js"> // define chart package
+<!-- define chart package -->
+<script src="./js/myProfile.js">
     drawCharts()
 </script>
 
-<!-- <script src="./js/edit-profile.js"></script> -->
 <!--need the login js to implement logout when user clicks on "logout" link-->
 <script src="./js/login.js"></script>
 

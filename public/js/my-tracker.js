@@ -43,7 +43,8 @@ function Tracker() {
       });
       uDiv.querySelector("#delBtn").addEventListener("click", (evt) => {
         evt.preventDefault();
-        delTracker(objects._id);
+        updatesDiv.removeChild(uDiv);
+        deleteTracker(objects._id);
       });
     }
   }
@@ -51,10 +52,7 @@ function Tracker() {
   function getTracker() {
     if (form) {
       form.addEventListener("submit", (evt) => {
-        console.log("evt", evt);
-        evt.stopPropagation();
         evt.preventDefault();
-        console.log("fired submit1");
         createTracker(form);
         document.getElementById("tracker-form").reset();
       });
@@ -62,7 +60,6 @@ function Tracker() {
   }
 
   async function createTracker(_form) {
-    console.log("create tracker", _form);
     try {
       await fetch("./tracker", {
         method: "POST",
@@ -136,13 +133,6 @@ function Tracker() {
     } catch (err) {
       alert(`There is an error updateTracker ${err}`);
     }
-  }
-
-  // del tracker
-  function delTracker(id) {
-    let selectedTracker = document.getElementById(id);
-    selectedTracker.remove();
-    deleteTracker(id);
   }
 
   // del tracker fetch

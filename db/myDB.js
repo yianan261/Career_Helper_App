@@ -92,7 +92,6 @@ function MyMongoDB() {
         },
       };
       const res = await usersCol.findOne({ email: _email }, options);
-      console.log("Got user profile", res);
       return res;
     } finally {
       client.close();
@@ -149,10 +148,8 @@ function MyMongoDB() {
         tracker: _tracker,
         email: _email,
       });
-      console.log("Inserted!", res);
       return res;
     } finally {
-      console.log("Closing the connection");
       client.close();
     }
   };
@@ -168,7 +165,6 @@ function MyMongoDB() {
       const res = await trackerCol.find({ email: _email }).toArray();
       return res;
     } finally {
-      console.log("Closing the connection");
       client.close();
     }
   };
@@ -187,9 +183,8 @@ function MyMongoDB() {
       );
       return res;
     } catch (err) {
-      console.log(`This is the error ${err}`);
+      alert(`This is the error ${err}`);
     } finally {
-      console.log("Closing the connection");
       client.close();
     }
   };
@@ -207,9 +202,8 @@ function MyMongoDB() {
       );
       return res;
     } catch (err) {
-      console.log(`This is the error ${err}`);
+      alert(`This is the error ${err}`);
     } finally {
-      console.log("Closing the connection");
       client.close();
     }
   };
