@@ -37,6 +37,8 @@ A career helper app built with Node.js, Express.js, MongoDB, HTML, CSS, Javascri
 3. Run ```npm run initDB``` to download data.json file into local mongoDB in order to see job posts information for the jobs page
 4. Run ```npm run dev``` to run in development mode
 
+## Google Slides
+https://docs.google.com/presentation/d/1LDu-aQO1kb1h-K93a5c6HTp4jHIgH42dJ02MjFZht0Y/edit#slide=id.p
 
 ## Authors
 - Yian Chen
