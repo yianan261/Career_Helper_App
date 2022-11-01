@@ -26,3 +26,6 @@ A career helper app built with Node.js, Express.js, MongoDB, HTML, CSS, Javascri
 ## Authors
 - Yian Chen
 - So Man Amanda Au-Yeung
+
+## Class Link
+https://johnguerra.co/classes/webDevelopment_fall_2022/
