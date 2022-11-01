@@ -40,6 +40,9 @@ A career helper app built with Node.js, Express.js, MongoDB, HTML, CSS, Javascri
 ## Google Slides
 https://docs.google.com/presentation/d/1LDu-aQO1kb1h-K93a5c6HTp4jHIgH42dJ02MjFZht0Y/edit?usp=sharing
 
+## Business Document
+https://docs.google.com/document/d/171yKsxTVATrT30e2c8YJNQw8LKx3K8I0HCIAf1SHlSk/edit
+
 ## Authors
 - Yian Chen
 - So Man Amanda Au-Yeung
