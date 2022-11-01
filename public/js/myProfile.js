@@ -5,9 +5,11 @@ function MyProfile() {
     const greetUser = document.getElementById("greetUser");
     let skills = document.getElementById("profileSkills");
     let improve = document.getElementById("improve");
+    let experience = document.getElementById("profileExp");
     greetUser.innerHTML = `Hello, ${data.name}!`;
     skills.innerHTML = `<div>${data.skills}</div>`;
     improve.innerHTML = `<div>${data.toWorkOn}</div>`;
+    experience.innerHTML = `<div>${data.experience}</div>`;
   };
 
   //Yian Chen
