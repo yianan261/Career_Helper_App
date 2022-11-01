@@ -6,7 +6,7 @@ The career helper app is particularly designed for anyone in the job search. The
 A career helper app built with Node.js, Express.js, MongoDB, HTML, CSS, Javascript.
 
 ## Screenshots
-# Home Page
+### Home Page
 <img width="1833" alt="Screen Shot 2022-10-31 at 10 53 17 PM" src="https://user-images.githubusercontent.com/58647320/199170785-f3c4ffbc-add8-47f2-8a14-a76d3eb63abe.png">
 <img width="1798" alt="Screen Shot 2022-10-31 at 10 53 46 PM" src="https://user-images.githubusercontent.com/58647320/199170793-c041b0fc-9175-4f19-b556-8a01cb9249a4.png">
 <img width="1762" alt="Screen Shot 2022-10-31 at 10 54 18 PM" src="https://user-images.githubusercontent.com/58647320/199170796-807109b1-b943-4c28-9e5a-0ba200cd537f.png">
