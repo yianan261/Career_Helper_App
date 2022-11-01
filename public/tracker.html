@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Amanda Au-Yeung">
+  <meta name="author" content="Yian Chen, Amanda Au-Yeung">
   <link rel="icon" href="/img/C.png" />
   <link rel="stylesheet" type="text/css" href="/css/tracker.css">
   <link rel="stylesheet" type="text/css" href="/css/navbar.css">
@@ -95,7 +95,6 @@
             <input type="date" id="new-input" name="openDate">
 
           <div id="updates"> Loading...
-            <!-- <form class="tempForm" id="tempForm"></form>  -->
           </div>
           <form action="/tracker" method="post" id="tracker-form">
           <div class="container-text-center" id="tracker-content">
@@ -104,25 +103,25 @@
                 <button type="submit" name="crud" value="add">+</button>
                 </div>
               <div class="col">
-                <input type="text" name="company" id="new-input" placeholder="Company Name" value="">
+                <input type="text" name="company" id="new-input" placeholder="Company Name">
               </div>
               <div class="col">
-                <input type="text" name="position" id="new-input" placeholder="Position" value="">
+                <input type="text" name="position" id="new-input" placeholder="Position">
               </div>
               <div class="col">
-                <input type="url" name="appLink" id="new-input" placeholder="https://example.com" value="" class>
+                <input type="url" name="appLink" id="new-input" placeholder="https://example.com">
               </div>
               <div class="col">
-                <input type="date" id="new-input" name="openDate" value="">
+                <input type="date" id="new-input" name="openDate">
               </div>
               <div class="col">
                 <select id="status" name="status">
-                    <option value="---">Not Applied</option>
-                    <option value="applied">Applied</option>
-                    <option value="interview">Interview</option>
-                    <option value="offer">Offer</option>
-                    <option value="reject">Reject</option>
-                    <option value="withdraw">Withdraw</option>
+                    <option value="Saved">Not Applied</option>
+                    <option value="Applied">Applied</option>
+                    <option value="Interview">Interview</option>
+                    <option value="Offer">Offer</option>
+                    <option value="Reject">Reject</option>
+                    <option value="Withdraw">Withdraw</option>
                 </select>
               </div>
             </div>
@@ -153,6 +152,7 @@
 
 
 <script src="./js/my-tracker.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <!-- <script src="./js/edit-tracker.js"></script> -->
 
 </html>
