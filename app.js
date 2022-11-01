@@ -15,7 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 //Yian Chen
-dotenv.config({ path: "./config/config.env" });
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
