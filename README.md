@@ -23,6 +23,10 @@ A career helper app built with Node.js, Express.js, MongoDB, HTML, CSS, Javascri
 ### My Profile Page
 <img width="1778" alt="Screen Shot 2022-10-31 at 11 00 55 PM" src="https://user-images.githubusercontent.com/58647320/199170811-41d207d2-0bd3-4748-92fa-2e8bbccb1a0f.png">
 
+### Edit Profile Page
+<img width="1263" alt="Screen Shot 2022-10-31 at 11 32 50 PM" src="https://user-images.githubusercontent.com/58647320/199173310-5294245b-6998-41ef-acbf-3653000008d3.png">
+
+
 ### Job Page
 <img width="1279" alt="Screen Shot 2022-10-31 at 11 18 22 PM" src="https://user-images.githubusercontent.com/58647320/199171241-4d0e34a1-9125-43d7-9cb0-744609b9222c.png">
 
