@@ -2,7 +2,6 @@
 function EditProfile() {
   //function that changes placeholders of name,email,phone to user in session
   const showProfile = (data) => {
-    console.log("data", data);
     const _name = document.querySelector("[name='name']");
     const email = document.querySelector("[name='email']");
     const phone = document.querySelector("[name='phone']");

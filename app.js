@@ -6,7 +6,7 @@ import register from "./routes/register.js";
 import jobs from "./routes/jobs.js";
 import profile from "./routes/profile.js";
 import signIn from "./routes/sign-in.js";
-import tracker from "./routes/tracker.js";
+import tracker from "./controllers/tracker.js";
 import session from "express-session";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -48,4 +48,3 @@ app.listen(
   PORT,
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 );
-

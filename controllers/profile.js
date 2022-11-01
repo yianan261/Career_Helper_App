@@ -25,7 +25,6 @@ export const updateProfile = async (req, res) => {
  * 
  */
 export const editProfile = async (req, res) => {
-  console.log("req.session.user", req.session.user);
   if (req.session.user) {
     const sessionUser = req.session.user;
     const user_info = await myDB.getUser(sessionUser.user);
