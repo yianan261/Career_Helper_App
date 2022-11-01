@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Career Helper App ",
   "main": "app.js",
-  "engines": {
-    "node": "16.x"
-  },
   "type": "module",
   "scripts": {
     "start": "cross-env NODE_ENV=production node app.js",
