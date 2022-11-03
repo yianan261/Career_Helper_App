@@ -6,6 +6,9 @@ import {
 } from "../controllers/sign-in.js";
 const router = express.Router();
 
+/*Nicely organized routes, Yian! In this file and other route
+  files. Also, great job avoiding server-side rendering.*/
+
 //Yian Chen
 router.get("/getUser", (req, res) => {
   res.json({ isLoggedIn: !!req.session.user, user: req.session });

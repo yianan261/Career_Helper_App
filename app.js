@@ -14,6 +14,10 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+/*Great job overall, Yian and Amanda! Well organized 
+  folders, files, descriptive function names, JS code
+  organized in Modules, client-side rendering.*/
+
 //Yian Chen
 dotenv.config();
 

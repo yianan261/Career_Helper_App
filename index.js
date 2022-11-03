@@ -14,6 +14,10 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+/*Is this a leftover file/code that isn't used? I see
+  in your package.json that "main" is running "app.js" but
+  the current file is nearly identical to app.js*/
+
 //Yian Chen
 dotenv.config({ path: "./config/config.env" });
 

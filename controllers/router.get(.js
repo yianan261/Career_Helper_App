@@ -24,6 +24,9 @@ export const displayJobs = async (req, res) => {
  * @param {obj} res
  */
 export const searchJob = async (req, res) => {
+  /*As you did in the function above, it's generally good practice
+    to place the body of the function in a try-catch block. That
+    said, great job, Yian, providing a description for the function*/
   const keywords = req.body.query;
   const getPosts = await myDB.findJobPosts(keywords);
   res.status(200).json({ data: getPosts });
