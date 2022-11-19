@@ -33,6 +33,7 @@ app.use(bodyParser.json());
 
 app.use(express.static("./public"));
 
+//Great modularization and clean main app.js code
 app.use("/register", register);
 app.use("/jobs", jobs);
 app.use("/profile", profile);
