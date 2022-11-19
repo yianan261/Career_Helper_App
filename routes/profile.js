@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 
 //get method that gets user's edit profile page
 router.get("/user/edit-profile", editProfile);
-
+// Try to render in client side
 router.get("/edit-profile", (req, res) => {
   res.redirect("/edit-profile.html");
 });
